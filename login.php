@@ -7,25 +7,32 @@
 	$conn = new PDO("mysql:host=sql212.epizy.com;dbname=epiz_25212202_Dental;","epiz_25212202","q4JS0dPGEdBBO");
 	
 	//Stops SQL injection 
-	$statement = $conn->prepare("SELECT email,password FROM User WHERE email=? AND password=?");
+	$statement = $conn->prepare("SELECT email,password,type FROM User WHERE email=? AND password=?");
 	$statement->bindParam (1, $em);
 	$statement->bindParam (2, $pw);
 	$statement->execute();
 	
-	
-	If ($statement->fetch() == false) 
-	{
+	if ($statement->rowCount() < 1) {
 		echo "<p>ERROR: Invalid Login!";
 		echo " <a href='index.php'>Back</a></p>";
 	}
-	else 
-	{
+
+	while($row_statement=$statement->fetch()){
+		
+		$user_type=$row_statement[type];
+	
 		//Sets up the authentication session variable and stores the email in it
 		$_SESSION["gatekeeper"] = $em;
-        //Redirects to index page
-        echo "<p>Login successful!";
-        //header ("");
-        echo "<br /><br /><a href='index.php'>Back</a>";
-        echo "<br /><a href='logout.php'>Logout</a></p>"; 
+		//Redirects to index page
+		echo "<p>Login successful!";
+		
+		echo "<br /><br /><a href='index.php'>Back</a>";
+		echo "<br /><a href='logout.php'>Logout</a>";
+
+		$user_link = $user_type;
+		$user_link .= "Index.php";
+		echo '<br /><br />User Type: '.$user_type."     <a href='".$user_link."'>Proceed</a> </p>"; 
+			
 	}
+	
 ?>

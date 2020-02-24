@@ -1,0 +1,171 @@
+  
+html , body {
+    font-family: 'Libre Franklin', sans-serif;
+   
+    
+}
+
+header, .dentists {
+    
+    background: url(../images/bg-hero-desktop.svg);
+    
+}
+
+
+
+button {
+    background-color: white;
+    color: black;
+    padding: 12px 60px;
+    text-align: center;
+    display: inline;
+    font-size: 16px;
+    border-radius: 12px;
+    background-image: url(../images/bg-hero-desktop.svg);
+    cursor : pointer; 
+
+}
+
+input[type=sub] {
+    width: 30%;
+    padding: 13px 13px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid  hsl(154, 59%, 51%);
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    background-color: hsl(154, 59%, 51%);
+    font-family: 'Poppins', sans-serif; 
+    font-size: 16px;
+    box-shadow: 0 8px 6px -6px hsl(154, 59%, 51%);
+    cursor: pointer;
+}
+
+/* .card {
+    grid-column: span 12;
+    height: 400px;
+    max-width: 100%;
+    display: grid;
+    border: 1px solidrgba(128, 141, 153, 0.15);
+    box-shadow: 0px 0px 4px 3px rgba(128, 141, 153, 0.1);
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 40px;
+   
+} */
+
+
+/* .appointment {
+    max-width: 50%;
+} */
+
+aside {
+    
+    color: white;
+    margin-right: 20px;
+    /* padding-left: 7rem; */
+    height: 400px;
+    
+}
+
+input[type=text] {
+    width: 95%;
+    padding: 15px 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+input[type=email] {
+    width: 95%;
+    padding: 15px 15px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=number] {
+    width: 95%;
+    padding: 15px 15px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=subm] {
+    width: 95%;
+    padding: 13px 13px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid  hsl(154, 59%, 51%);
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    background-color: hsl(154, 59%, 51%);
+    font-family: 'Poppins', sans-serif; 
+    font-size: 16px;
+    box-shadow: 0 8px 6px -6px hsl(154, 59%, 51%);
+    cursor: pointer;
+}
+
+::placeholder {
+    font-size: 15px;
+}
+
+.form {
+    width: 95%;
+    border: 1px solid rgba(128, 141, 153, 0.15);
+    border-radius: 10px;  
+    background-color: white;
+    box-sizing: border-box;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    margin-right: 96px;
+
+   
+}
+
+h5 {
+    font-size: 10px;
+    text-align: center;
+    margin-left: 3rem;
+}
+
+
+.praise {
+    
+    background-color: azure;
+    padding: 2em;
+}
+
+footer {
+       
+    background: url(../images/bg-hero-desktop.svg);
+    
+}
+
+.opening-hours {
+    list-style: none;
+    
+}
+
+li {
+    padding-top: 0.5rem;
+    border-Bottom: solid;
+    border-width: 1px;
+    padding-bottom: 0.5rem;
+
+}

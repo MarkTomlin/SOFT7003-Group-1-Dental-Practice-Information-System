@@ -1,9 +1,6 @@
 <?php
   session_start();
   //var_dump(session_id());
-
-  $fname = $_SESSION["fname"] ;
-  $lname = $_SESSION["lname"] ;
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +28,12 @@
   <!-- Custom JS for this template -->
   <script type="text/javascript">
     window.onload=function(){
-      var book_app_btn = document.getElementById('book_app');
-      var view_app_btn = document.getElementById('view_app');
-      book_app_btn.addEventListener('click', function() {
-        document.location.href = 'appointmentForm.php';
+      var home_btn = document.getElementById('home');
+      var view_btn = document.getElementById('view');
+      home_btn.addEventListener('click', function() {
+        document.location.href = 'patientIndex.php';
       });
-      view_app_btn.addEventListener('click', function() {
+      view_btn.addEventListener('click', function() {
         document.location.href = 'viewAppointments.php';
       });
     }
@@ -59,28 +56,19 @@
         </div>
       </nav>
       <h1 class="nt3 tc">Patient Mangament System</h1>
-      <br />
-      <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
+      <br /><br />
+      <h2 class="nt3 tc">Appointment Request Form</h2>
     
 
     <!-- Content-->
-    <div class="mw-70 center mt5">
-      <div class="row mb3" style="display: flex; justify-content: center;">
-        <button id='view_cal' style="width: 380px">View Appointment Calender</button>
-      </div>
-      <div class="row mb3" style="display: flex; justify-content: center;">
-        <button id='book_app'style="width: 380px">Request Appointment</button>
-      </div>
-      <div class="row mb3" style="display: flex; justify-content: center;">
-        <button id='view_app'style="width: 380px">View My Appointments</button>
-      </div>
-      <div class="row mb3" style="display: flex; justify-content: center;">
-        <button id='view_bill' style="width: 380px">View Bills</button>
-      </div>
-      <div class="row mb3" style="display: flex; justify-content: center;">
-        <button id='edit_acc'style="width: 380px">Edit Account Details</button>
-      </div>
+    <div style="margin: auto; width: 50%;">
+        <div style="margin-top: 70px;">
+            <p class="fw9 green f4 nt4">Appointment Request Submitted!</p>
+            <button id="home">Home</button>
+            <button id="view">View Appointments</button>
+        </div>
     </div>
+
   
 </div>        
     

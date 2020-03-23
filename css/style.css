@@ -5,6 +5,10 @@ html , body {
     
 }
 
+table, th, td {
+    border: 1px solid black;
+}
+
 header, .dentists {
     
     background: url(../images/bg-hero-desktop.svg);

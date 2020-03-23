@@ -3,13 +3,17 @@
 		
 	$em = $_POST["email"];
 	$pw = $_POST["password"];
+
+	$salt = "3c7_pKr?";
+	$encrypted_password = md5($pw . $salt);
 	
 	$conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 	
-	//Stops SQL injection 
+	//Connect to database
 	$statement = $conn->prepare("SELECT id,firstname,lastname,email,password,type FROM User WHERE email=? AND password=?");
+	//bindParam stops SQL injection exploit
 	$statement->bindParam (1, $em);
-	$statement->bindParam (2, $pw);
+	$statement->bindParam (2, $encrypted_password);
 	$statement->execute();
 	
 	if ($statement->rowCount() < 1) {
@@ -23,15 +27,9 @@
 	
 		//Sets up the authentication session variable and stores the email in it
 		$_SESSION["gatekeeper"] = $em;
-		
-		//echo "<p>Login successful!";
-		
-		//echo "<br /><br /><a href='index.php'>Back</a>";
-		//echo "<br /><a href='logout.php'>Logout</a>";
 
 		$user_link = $user_type;
 		$user_link .= "Index.php";
-		//echo '<br /><br />User Type: '.$user_type."     <a href='".$user_link."'>Proceed</a> </p>"; 
 
 		$_SESSION["user_id"] = $row_statement['id'];
 		$_SESSION["fname"] = $row_statement['firstname'];

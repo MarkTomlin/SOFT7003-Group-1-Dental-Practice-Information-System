@@ -9,7 +9,7 @@
       
         <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
         
-        <title>OneDental | Nō 1 Dental Clinic in Oxfordshire</title>
+        <title>OneDental | No 1 Dental Clinic in Oxfordshire</title>
       
         <!-- Custom fonts for this template -->
         <link href="https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap" rel="stylesheet">
@@ -23,7 +23,15 @@
         <link href="css/style.css" rel="stylesheet">  
       
         <!-- Custom JS for this template -->
-        <script type="text/javascript" src=""></script>
+        <script type="text/javascript">
+            window.onload=function(){
+              var btn = document.getElementById('register');
+              btn.addEventListener('click', function() {
+                document.location.href = 'registerForm.php';
+              });
+            }
+            
+        </script>
        
       </head>
 <body>
@@ -51,10 +59,10 @@
 
         </div>
 
-        <div class="fl w-100 w-60-ns pa2 mb7">
-          <aside class="pl6-ns">
+        <div class="fl w-100 w-60-ns pa2 mb1">
+          <aside class="pl6-ns" style="height: 310px">
             <p class="fw9 green f4 nt4">Sign Into Your Account</p>
-            <div class="form mb5">
+            <div class="form mb2">
               <form method="POST" action="signIn.php">
               
                 <div class="form-field">
@@ -74,14 +82,15 @@
                   <span class="err-icon">&nbsp;</span>
                   <span class="err-msg">Please input your phone number</span>
                 </div>
-                
-                
                 <button type="submit" name="action">Login</button>
                 <h5><font color="gray">By clicking the button, you are agreeing to our </font> <font color="red">Terms and Services</font>By clicking the button, you are agreeing to our </font>></h5>
-                
               </form>
             </div>
           </aside>
+          <div class="fl w-100 w-60-ns pa2 mb7" style="margin-left: 15%">
+            <p>Don't have an account? You can register for free!</p>
+            <button id="register">Register</button>
+          </div>
                   
         </div>
       </div>

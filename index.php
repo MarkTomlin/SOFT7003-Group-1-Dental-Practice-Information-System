@@ -9,7 +9,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   
-  <title>OneDental | Nō 1 Dental Clinic in Oxfordshire</title>
+  <title>OneDental | No 1 Dental Clinic in Oxfordshire</title>
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap" rel="stylesheet">

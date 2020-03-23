@@ -21,11 +21,6 @@
 	$statement->bindParam (6, $tp);
 	$statement->execute();
 
-	while($row_statement=$statement->fetch()){
-		
-
-		header ('Location: registerSuccess.html');
-			
-	}
+	header ('Location: registerSuccess.php');
 	
 ?>

@@ -7,7 +7,7 @@
 	$conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 	
 	//Stops SQL injection 
-	$statement = $conn->prepare("SELECT email,password,type FROM User WHERE email=? AND password=?");
+	$statement = $conn->prepare("SELECT id,firstname,lastname,email,password,type FROM User WHERE email=? AND password=?");
 	$statement->bindParam (1, $em);
 	$statement->bindParam (2, $pw);
 	$statement->execute();
@@ -32,6 +32,10 @@
 		$user_link = $user_type;
 		$user_link .= "Index.php";
 		//echo '<br /><br />User Type: '.$user_type."     <a href='".$user_link."'>Proceed</a> </p>"; 
+
+		$_SESSION["user_id"] = $row_statement['id'];
+		$_SESSION["fname"] = $row_statement['firstname'];
+		$_SESSION["lname"] = $row_statement['lastname'];
 
 		//Redirects to index page
 		header ('Location: '.$user_link.'');

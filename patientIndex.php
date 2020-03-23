@@ -1,5 +1,10 @@
 <?php
-	session_start(); ?>
+  session_start();
+  //var_dump(session_id());
+
+  $fname = $_SESSION["fname"] ;
+  $lname = $_SESSION["lname"] ;
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +29,15 @@
 
 
   <!-- Custom JS for this template -->
-  <script type="text/javascript" src=""></script>
+  <script type="text/javascript">
+    window.onload=function(){
+      var book_app_btn = document.getElementById('book_app');
+      book_app_btn.addEventListener('click', function() {
+        document.location.href = 'appointmentForm.php';
+      });
+    }
+            
+  </script>
  
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -37,30 +50,31 @@
         <a class="" title="Home">
           <img src="images/group One.png" class="dib w5 h5 br-100" alt="Site Name">
         </a>
-        
+        <div class="dtc v-mid w-75 tr">
+          <a href="logout.php"><button class="btn" type="button">Log Out</button></a>
+        </div>
       </nav>
       <h1 class="nt3 tc">Patient Mangament System</h1>
+      <br />
+      <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
     
 
-    <!-- Appointment-->
-    <div class="mw9 center ph3-ns mt5 ">
-      <div class="cf ph2-ns">
-        <div class="fl w-100 w-40-ns">
-          <img class="br4" src="images/dentist-examining-patient-s-teeth_1098-568.jpg"> 
-
-        </div>
-
-        <div class="fl w-100 w-60-ns pa2 mb7">
-          <aside class="pl6-ns">
-            <p class="fw9 blue f4 nt4">Work in progress</p> <br /><br />
-            <img src="images/calendar.png" class="w6 h5">
-            <div>
-     <p><a href='logout.php'>Logout</a></p>
-  </div>
-            
-          </aside>
-                  
-        </div>
+    <!-- Content-->
+    <div class="mw-70 center mt5">
+      <div class="row mb3" style="display: flex; justify-content: center;">
+        <button id='view_cal' style="width: 400px">View Appointment Calender</button>
+      </div>
+      <div class="row mb3" style="display: flex; justify-content: center;">
+        <button id='book_app'style="width: 400px">Request Appointment</button>
+      </div>
+      <div class="row mb3" style="display: flex; justify-content: center;">
+        <button id='view_app'style="width: 400px">View My Appointments</button>
+      </div>
+      <div class="row mb3" style="display: flex; justify-content: center;">
+        <button id='view_bill' style="width: 400px">View Bills</button>
+      </div>
+      <div class="row mb3" style="display: flex; justify-content: center;">
+        <button id='edit_acc'style="width: 400px">Edit Account Details</button>
       </div>
     </div>
   

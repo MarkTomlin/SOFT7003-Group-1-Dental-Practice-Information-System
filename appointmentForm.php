@@ -100,7 +100,26 @@
                     border-radius: 4px;
                     box-sizing: border-box" required>
                     <option value="" disabled selected>Please select your preferred Dentist</option>
-                    <option value="1">John Smith</option>
+
+                    <?php 
+
+                      $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+
+                      $user_type = "dentist";
+                      
+                      //Stops SQL injection 
+                      $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM User WHERE Type=?");
+                      $statement->bindParam (1, $user_type);
+                      $statement->execute();
+
+                      while($row=$statement->fetch()){
+                        $dentID = $row['ID'];
+                        $dentFN = $row['FirstName'];
+                        $dentLN = $row['LastName'];
+                        echo  "<option value=$dentID>$dentFN $dentLN</option>";
+                      }
+                    ?>
+                    
                 </select>  
             </div>
 

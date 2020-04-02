@@ -75,7 +75,7 @@
                     <th style="width: 100px">Start Time</th>
                     <th style="width: 100px">End Time</th>
                     <th style="width: 100px">Dentist</th>
-                    <th style="width: 100px">Confirmed</th>
+                    <th style="width: 100px">Status</th>
                 </tr>
             <?php
                 $user_id = $_SESSION["user_id"] ;
@@ -103,9 +103,11 @@
                     $lname_dentist=$dentist['LastName'];
 
                     if ($conf === '0'){
-                        $conf = "No";
-                    } else {
-                        $conf = "Yes";
+                        $conf = "Pending";
+                    } elseif ($conf === '1') {
+                        $conf = "Confirmed";
+                    } elseif ($conf === '2') {
+                      $conf = "Rejected";
                     }
                 
                     echo "<tr style='border: 1px solid black;'><td>$date</td><td>$stime</td><td>$etime</td><td>$fname_dentist $lname_dentist</td><td>$conf</td></tr>";

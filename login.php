@@ -90,22 +90,10 @@
           <div class="fl w-100 w-60-ns pa2 mb7" style="margin-left: 15%">
             <p>Don't have an account? You can register for free!</p>
             <button id="register">Register</button>
-          </div>
-                  
+          </div>      
         </div>
       </div>
-    </div>
-  
-          
-        
-    
-    
-</div> 
-
-
-
-
-
-  
+    </div> 
+  </div> 
 </body>
 </html>

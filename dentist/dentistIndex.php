@@ -1,30 +1,34 @@
 <?php
-	session_start(); ?>
+  session_start();
+  $fname = $_SESSION["fname"] ;
+  $lname = $_SESSION["lname"] ;
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   
   <title>Dental Info System</title>
 
-  <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
+  <!-- Import Bootstrap -->
+  <script type="text/javascript" src="../lib/jquery-3.5.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-  <!-- Custom JS for this template -->
-  <script type="text/javascript" src=""></script>
+  <!-- Javascript  -->
+  <script type="text/javascript">
+    window.onload=function(){
+      var view_pat_btn = document.getElementById('view_pat');
+      view_pat_btn.addEventListener('click', function() {
+        document.location.href = 'viewPatientRecords.php';
+      });
+    }
+            
+  </script>
  
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -32,39 +36,31 @@
 
 </head>
 <body>
-<div class="container">
+  <div class="container-fluid" style="text-align: center">
     <!-- Navbar -->
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
     <h1 class="nt3 tc">Dentist Mangament System</h1>
-    
+    <br />
+    <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
+    <br /><br /><br />
 
-    <!-- Appointment-->
-    <div class="mw9 center ph3-ns mt5 ">
-      <div class="cf ph2-ns">
-        <div class="fl w-100 w-40-ns">
-          <img class="br4" src="images/dentist-examining-patient-s-teeth_1098-568.jpg"> 
-
-        </div>
-
-        <div class="fl w-100 w-60-ns pa2 mb7">
-          <aside class="pl6-ns">
-            <p class="fw9 blue f4 nt4">Work in progress</p> <br /><br />
-            <img src="images/calendar.png" class="w6 h5">
-            <div>
-     <p><a href='logout.php'>Logout</a></p>
-  </div>
-            
-          </aside>
-                  
-        </div>
-      </div>
+    <!-- Content-->
+    <div class="mw-70 center mt5">
+      <div class="row mb3" style="justify-content: center;">
+        <button id='view_cal'  class="btn btn-primary" style="width: 380px">View Appointment Calender</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
+        <button id='view_pat' class="btn btn-primary" style="width: 380px">View Patient Records</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
+        <button id='reg_acc' class="btn btn-primary" style="width: 380px">Submit Treatment Done</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
+        <button id='reg_acc' class="btn btn-primary" style="width: 380px">Confirm Emergenct Appointment</button>
+      </div><br />
     </div>
-  
-</div>        
-    
- 
-
+  </div>        
 </body>
 </html>

@@ -66,17 +66,22 @@
             $statement->execute();
         
             while($row=$statement->fetch()){
+              //Get dentist name
+              $conn2 = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+              $statement2 = $conn2->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
+              $statement2->bindParam (1, $row['DentistID']);
+              $statement2->execute();
+              $row2=$statement2->fetch();
+
               $ID = $row['ID'];
               $patient = $row['PatientID']; 
               $date = $row['Date'];
               $stime = $row['StartTime'];
               $etime = $row['EndTime'];
-              $dent = $row['DentistID'];
+              $dent_fn = $row2['FirstName'];
+              $dent_ln = $row2['LastName'];
+              $dent_name = $dent_fn." ".$dent_ln;
               $conf = $row['Confirmation'];
-
-              if ($dent === '1'){
-                  $dent = "John Smith";
-              }
 
               if ($conf === '0'){
                 $conf = "Pending";
@@ -89,7 +94,7 @@
               $col = 'red';
               }
               //Display data in table row
-              echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent</td><td  style='color: $col'>$conf</td>";
+              echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent_name</td><td  style='color: $col'>$conf</td>";
               echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Edit</button></form></td></tr>";
             }
             

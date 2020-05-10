@@ -68,10 +68,6 @@
               $email = $row['Email'];
               $pnum = $row['PhoneNumber'];
 
-              if ($dent === '1'){
-                  $dent = "John Smith";
-              }
-
               //Display data in table row
               echo "<tr style='border: 1px solid black;'><td>$fname</td><td>$lname</td><td>$email</td><td>$pnum</td></tr>";
             }

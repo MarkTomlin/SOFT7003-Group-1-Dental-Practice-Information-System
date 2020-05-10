@@ -43,7 +43,7 @@
         <div class="dtc v-mid w-75 tr">
             <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="About">About</a>
             <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="About">Services</a>
-          <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="Store">Testimonials</a>
+          <!-- <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="Store">Testimonials</a> -->
           <!-- <a class="link dim dark-gray f6 f4-ns dib grow" href="#" title="Contact">Admin</a> -->
           
         </div>

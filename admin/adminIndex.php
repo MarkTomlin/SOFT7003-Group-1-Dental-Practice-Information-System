@@ -1,7 +1,5 @@
 <?php
   session_start();
-  //var_dump(session_id());
-
   $fname = $_SESSION["fname"] ;
   $lname = $_SESSION["lname"] ;
   ?>
@@ -10,8 +8,9 @@
 <head>
 
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  
   <title>Dental Info System</title>
 
   <!-- Import Bootstrap -->
@@ -23,13 +22,17 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
-      var book_app_btn = document.getElementById('book_app');
-      var view_app_btn = document.getElementById('view_app');
-      book_app_btn.addEventListener('click', function() {
-        document.location.href = 'appointmentForm.php';
+      var conf_app_btn = document.getElementById('conf_app');
+      var edit_app_btn = document.getElementById('edit_app');
+      var view_pat_btn = document.getElementById('view_pat');
+      conf_app_btn.addEventListener('click', function() {
+        document.location.href = 'appointmentConfirm.php';
       });
-      view_app_btn.addEventListener('click', function() {
-        document.location.href = 'viewAppointments.php';
+      edit_app_btn.addEventListener('click', function() {
+        document.location.href = 'appointmentEdit.php';
+      });
+      view_pat_btn.addEventListener('click', function() {
+        document.location.href = 'viewPatients.php';
       });
     }
             
@@ -46,7 +49,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Mangament System</h1>
+    <h1 class="nt3 tc">Administrator Mangament System</h1>
     <br />
     <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
     <br /><br /><br />
@@ -54,22 +57,24 @@
     <!-- Content-->
     <div class="mw-70 center mt5">
       <div class="row mb3" style="justify-content: center;">
-        <button id='view_cal' class="btn btn-primary" style="width: 380px">View Appointment Calender</button>
+        <button id='view_cal'  class="btn btn-primary" style="width: 380px">View Appointment Calender</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
-        <button id='book_app' class="btn btn-primary" style="width: 380px">Request Appointment</button>
+        <button id='conf_app' class="btn btn-primary" style="width: 380px">Confirm Appointments</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
-        <button id='view_app' class="btn btn-primary" style="width: 380px">View My Appointments</button>
+        <button id='edit_app' class="btn btn-primary" style="width: 380px">Edit Appointments</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
-        <button id='view_bill' class="btn btn-primary" style="width: 380px">View Bills</button>
+        <button id='cre_bill'  class="btn btn-primary" style="width: 380px">Create Patient Bill</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
-        <button id='edit_acc' class="btn btn-primary" style="width: 380px">Edit Account Details</button>
+        <button id='view_pat' class="btn btn-primary" style="width: 380px">View Patients</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
+        <button id='reg_acc' class="btn btn-primary" style="width: 380px">Register New User</button>
       </div>
     </div>
-  
   </div>        
 </body>
 </html>

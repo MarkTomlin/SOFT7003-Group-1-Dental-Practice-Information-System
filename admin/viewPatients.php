@@ -20,13 +20,9 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
-      var home_btn = document.getElementById('home');
-      var view_btn = document.getElementById('view');
-      home_btn.addEventListener('click', function() {
-        document.location.href = 'patientIndex.php';
-      });
-      view_btn.addEventListener('click', function() {
-        document.location.href = 'viewAppointments.php';
+      var btn = document.getElementById('home');
+      btn.addEventListener('click', function() {
+        document.location.href = 'adminIndex.php';
       });
     }
             
@@ -43,17 +39,49 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Mangament System</h1>
+    <h1 class="nt3 tc">Administrator Mangament System</h1>
     <br /><br />
-    <h2 class="nt3 tc">Appointment Request Form</h2>
+    <h2 class="nt3 tc">View Patients</h2>
     
+
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
-    <br /><br />
-      <h3 class="display-4" style="color: green">Appointment Request Submitted!</p>
-      <div class="d-flex justify-content-between" style="padding-top: 7%; margin: auto; width: 40%;">  
-        <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
-        <button class="btn btn-primary" id="view" style="width: 200px; height: 48px; padding-left: 5px;">View Appointments</button>
+      <div style="margin-top: 70px;">
+        <table class="table table-bordered">
+            <tr>
+              <th style="width: 100px">First Name</th>
+              <th style="width: 100px">Last Name</th>
+              <th style="width: 100px">Email</th>
+              <th style="width: 100px">Phone Number</th>
+            </tr>
+        <?php
+            //Connect to Database
+            $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+
+            //Stops SQL injection 
+            $statement = $conn->prepare("SELECT * FROM User WHERE Type='patient'");
+            $statement->execute();
+        
+            while($row=$statement->fetch()){
+              $fname = $row['FirstName']; 
+              $lname = $row['LastName']; 
+              $email = $row['Email'];
+              $pnum = $row['PhoneNumber'];
+
+              if ($dent === '1'){
+                  $dent = "John Smith";
+              }
+
+              //Display data in table row
+              echo "<tr style='border: 1px solid black;'><td>$fname</td><td>$lname</td><td>$email</td><td>$pnum</td></tr>";
+            }
+            
+        ?>
+        </table>
+        <br /><br />
+        <div class="mw-70 center mt5">
+          <button id="home" class="btn btn-primary" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
+        </div>
       </div>
     </div>
   </div>        

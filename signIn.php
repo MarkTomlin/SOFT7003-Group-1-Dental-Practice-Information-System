@@ -36,6 +36,7 @@
 		$_SESSION["user_id"] = $row_statement['id'];
 		$_SESSION["fname"] = $row_statement['firstname'];
 		$_SESSION["lname"] = $row_statement['lastname'];
+		$_SESSION["user_type"] = $user_type;
 
 		//Redirects to user's index page
 		header ('Location: /'.$user_type.'/'.$user_link);

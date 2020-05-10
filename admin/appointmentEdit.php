@@ -22,7 +22,7 @@
     window.onload=function(){
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
-        document.location.href = 'patientIndex.php';
+        document.location.href = 'adminIndex.php';
       });
     }
             
@@ -39,46 +39,44 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Mangament System</h1>
+    <h1 class="nt3 tc">Administrator Mangament System</h1>
     <br /><br />
-    <h2 class="nt3 tc">View Appointments</h2>
-  
+    <h2 class="nt3 tc">Edit Appointments</h2>
+    
 
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
         <table class="table table-bordered">
-          <tr>
-            <th style="width: 100px">Date</th>
-            <th style="width: 100px">Start Time</th>
-            <th style="width: 100px">End Time</th>
-            <th style="width: 100px">Dentist</th>
-            <th style="width: 100px">Status</th>
-          </tr>
+            <tr>
+              <th style="width: 100px">Patient</th>
+              <th style="width: 100px">Date</th>
+              <th style="width: 100px">Start Time</th>
+              <th style="width: 100px">End Time</th>
+              <th style="width: 100px">Dentist</th>
+              <th style="width: 100px">Confirmed</th>
+              <th style="width: 100px">Action</th>
+            </tr>
         <?php
-          $user_id = $_SESSION["user_id"] ;
 
-          //Connect to Database
-          $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
-      
-          //Stops SQL injection 
-          $statement = $conn->prepare("SELECT * FROM Appointment WHERE PatientID=? ORDER BY Date ASC");
-          $statement->bindParam (1, $user_id);
-          $statement->execute();
-      
-          while($row=$statement->fetch()){
+            $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+        
+            //Stops SQL injection 
+            $statement = $conn->prepare("SELECT * FROM Appointment");
+            $statement->execute();
+        
+            while($row=$statement->fetch()){
+              $ID = $row['ID'];
+              $patient = $row['PatientID']; 
               $date = $row['Date'];
               $stime = $row['StartTime'];
               $etime = $row['EndTime'];
               $dent = $row['DentistID'];
               $conf = $row['Confirmation'];
 
-              $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
-              $statement2->bindParam (1, $dent);
-              $statement2->execute();
-              $dentist=$statement2->fetch();
-              $fname_dentist=$dentist['FirstName'];
-              $lname_dentist=$dentist['LastName'];
+              if ($dent === '1'){
+                  $dent = "John Smith";
+              }
 
               if ($conf === '0'){
                 $conf = "Pending";
@@ -87,16 +85,19 @@
                 $conf = "Confirmed";
                 $col = 'green';
               } elseif ($conf === '2') {
-                $conf = "Rejected";
-                $col = 'red';
+              $conf = "Rejected";
+              $col = 'red';
               }
-            //Display data in table row
-            echo "<tr style='border: 1px solid black;'><td>$date</td><td>$stime</td><td>$etime</td><td>$fname_dentist $lname_dentist</td><td style='color: $col'>$conf</td></tr>";
-          }  
+              //Display data in table row
+              echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent</td><td  style='color: $col'>$conf</td>";
+              echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Edit</button></form></td></tr>";
+            }
+            
         ?>
         </table>
-        <div class="d-flex justify-content-center" style="padding-top: 7%; margin: auto; width: 40%;"> 
-          <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
+        <br /><br />
+        <div class="mw-70 center mt5">
+          <button id="home" class="btn btn-primary" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
         </div>
       </div>
     </div>

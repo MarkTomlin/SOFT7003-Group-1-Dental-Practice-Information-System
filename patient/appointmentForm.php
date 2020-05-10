@@ -13,19 +13,13 @@
   
   <title>Dental Info System</title>
 
-  <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
+  <!-- Import Bootstrap -->
+  <script type="text/javascript" src="../lib/jquery-3.5.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-  <!-- Custom JS for this template -->
+  <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
       var btn = document.getElementById('cancel');
@@ -42,7 +36,7 @@
 
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid" style="text-align: center">
     <!-- Navbar -->
     <?php include("../navbar.php"); ?>
     
@@ -50,90 +44,71 @@
     <h1 class="nt3 tc">Patient Mangament System</h1>
     <br /><br />
     <h2 class="nt3 tc">Appointment Request Form</h2>
-    
+    <br /><br /><br />
 
     <!-- Content-->
-    <div style="margin: auto; width: 50%;">
-        <div class="form mb2">
-            <form method="POST" action="appointmentBookScript.php">
-            <div class="form-field">
-                <label for="date">Date:   </label><input type="date" id="date" class="form-control" name="date" placeholder="Date" style="width: 90%;
-                padding: 15px 15px;
-                margin: 5px 0 0 15px;
-                display: inline-block;
-                border: 1px solid whitesmoke;
-                border-radius: 4px;
-                box-sizing: border-box" required> <br>
-                <span class="err-icon">&nbsp;</span>
+    <div class="container" style="margin: auto; width: 80%; border-radius: 25px; box-shadow: 0 0 3px gray;">
+      <form method="POST" action="appointmentBookScript.php">
+        <br>
+        <div class="form-group row">
+            <label for="date" class="col-sm-2 col-form-label">Date:</label>
+            <div class="col-sm-8">
+              <input type="date" id="date" class="form-control" name="date" placeholder="Date" required> 
             </div>
-            
-            <div class="form-field">
-                <label for="time">Time:   </label><select type="time" id="time" class="form-control" name="time" placeholder="Time" style="width: 90%;
-                    padding: 15px 15px;
-                    margin: 5px 0 0 15px;
-                    display: inline-block;
-                    border: 1px solid whitesmoke;
-                    border-radius: 4px;
-                    box-sizing: border-box" required>
-                    <option value="" disabled selected>Please select a time</option>
-                    <option value="9">9:00</option>
-                    <option value="10">10:00</option>
-                    <option value="11">11:00</option>
-                    <option value="12">12:00</option>
-                    <option value="13">13:00</option>
-                    <option value="14">14:00</option>
-                    <option value="15">15:00</option>
-                    <option value="16">16:00</option>
-                </select>  
+        </div><br>
+        <div class="form-group row">
+            <label for="time" class="col-sm-2 col-form-label">Time:   </label>
+            <div class="col-sm-8">
+              <select type="time" id="time" class="form-control" name="time" placeholder="Time" required>
+                <option value="" disabled selected>Please select a time</option>
+                <option value="9">9:00</option>
+                <option value="10">10:00</option>
+                <option value="11">11:00</option>
+                <option value="12">12:00</option>
+                <option value="13">13:00</option>
+                <option value="14">14:00</option>
+                <option value="15">15:00</option>
+                <option value="16">16:00</option>
+              </select>  
             </div>
-
-            <div class="form-field">
-                <label for="dent">Dentist:   </label><select type="dent" id="dent" class="form-control" name="dent" placeholder="Dentist" style="width: 90%;
-                    padding: 15px 15px;
-                    margin: 5px 0;
-                    display: inline-block;
-                    border: 1px solid whitesmoke;
-                    border-radius: 4px;
-                    box-sizing: border-box" required>
-                    <option value="" disabled selected>Please select your preferred Dentist</option>
-
-                    <?php 
-
-                      $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
-
-                      $user_type = "dentist";
-                      
-                      //Stops SQL injection 
-                      $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM User WHERE Type=?");
-                      $statement->bindParam (1, $user_type);
-                      $statement->execute();
-
-                      while($row=$statement->fetch()){
-                        $dentID = $row['ID'];
-                        $dentFN = $row['FirstName'];
-                        $dentLN = $row['LastName'];
-                        echo  "<option value=$dentID>$dentFN $dentLN</option>";
-                      }
-                    ?>
-                    
-                </select>  
-            </div>
-
-            <div class="form-field">
-                <label for="reason">Reason:   </label><input type="text" id="reason" class="form-control" name="reason" placeholder="Reason for Appointment" style="width: 90%;
-                padding: 15px 15px;
-                margin: 5px 0;
-                display: inline-block;
-                border: 1px solid whitesmoke;
-                border-radius: 4px;
-                box-sizing: border-box" required> <br>
-                <span class="err-icon">&nbsp;</span>
-            </div>
-
-            <br/><br/>
-            <button id="cancel">Cancel</button><button type="submit" name="action">Submit</button>
-            </form>
         </div>
+        <div class="form-group row">
+          <label for="dent" class="col-sm-2 col-form-label">Dentist:</label>
+          <div class="col-sm-8">
+            <select type="dent" id="dent" class="form-control" name="dent" placeholder="Dentist" required>
+              <option value="" disabled selected>Please select your preferred Dentist</option>
+              <?php 
+                $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+
+                $user_type = "dentist";
+                
+                //Stops SQL injection 
+                $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM User WHERE Type=?");
+                $statement->bindParam (1, $user_type);
+                $statement->execute();
+
+                while($row=$statement->fetch()){
+                  $dentID = $row['ID'];
+                  $dentFN = $row['FirstName'];
+                  $dentLN = $row['LastName'];
+                  echo  "<option value=$dentID>$dentFN $dentLN</option>";
+                }
+              ?>  
+            </select>  
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="reason" class="col-sm-2 col-form-label">Reason:</label>
+          <div class="col-sm-8">
+            <input type="text" id="reason" class="form-control" name="reason" placeholder="Reason for Appointment" required> 
+          <div><br /> 
+        </div>
+        <div class="d-flex justify-content-between" style="padding-top: 7%;">
+          <button class="btn btn-primary" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
+          <button class="btn btn-primary" type="submit" name="action" style="width: 200px; height: 48px; padding-left: 20px;">Submit</button>
+        </div>
+        <br><br>
+      </form>
     </div>
   </div>        
 </body>

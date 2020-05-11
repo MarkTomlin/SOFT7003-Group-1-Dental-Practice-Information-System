@@ -1,6 +1,6 @@
 # SOFT7003-Group-1-Dental-Practice-Information-System
 
-This is the source files for the our group project application:
+This is the source files for our group project application:
 
 A small Dental Practice information and management Web Application
 

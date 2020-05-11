@@ -1,6 +1,5 @@
 <?php
   session_start();
-  //var_dump(session_id());
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +37,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Administrator Mangament System</h1>
+    <h1 class="nt3 tc">Administrator Management System</h1>
     <br /><br />
     <h2 class="nt3 tc">Confirm Appointments</h2>
 
@@ -59,8 +58,9 @@
 
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
         
-            //Stops SQL injection 
+            //Select appointments from database that are not confirmed 
             $statement = $conn->prepare("SELECT * FROM Appointment WHERE Confirmation=?");
+            //bindParam stops SQL injection exploit
             $statement->bindParam (1, $false_conf);
             $statement->execute();
         

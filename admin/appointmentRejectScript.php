@@ -5,7 +5,7 @@
 	
 	$conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 	
-	//Connect to database
+	//Set appointment to rejected in database
 	$statement = $conn->prepare("UPDATE Appointment SET Confirmation=2 WHERE ID=?");
 	//bindParam stops SQL injection exploit
 	$statement->bindParam (1, $app_id);

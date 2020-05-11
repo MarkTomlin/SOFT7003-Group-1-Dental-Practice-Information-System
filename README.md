@@ -7,6 +7,10 @@ A small Dental Practice information and management Web Application
 Once logged in, the user will be redirected to own user specific application
 These user application files are sperated in the file structure, inside the folder name of the user type.
 
+
+The link to the live website is: http://onedental.atwebpages.com/
+
+
 Here are some test logins:
 
 Dentist:

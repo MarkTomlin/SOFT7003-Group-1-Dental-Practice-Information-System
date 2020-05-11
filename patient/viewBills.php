@@ -21,7 +21,7 @@
     window.onload=function(){
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
-        document.location.href = 'adminIndex.php';
+        document.location.href = 'patientIndex.php';
       });
     }
             
@@ -38,9 +38,9 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Administrator Management System</h1>
+    <h1 class="nt3 tc">Patient Management System</h1>
     <br /><br />
-    <h2 class="nt3 tc">Edit Appointments</h2>
+    <h2 class="nt3 tc">Patient Bills</h2>
     
 
     <!-- Content-->
@@ -48,54 +48,54 @@
       <div style="margin-top: 70px;">
         <table class="table table-bordered">
             <tr>
-              <th style="width: 100px">Patient</th>
               <th style="width: 100px">Date</th>
-              <th style="width: 100px">Start Time</th>
-              <th style="width: 100px">End Time</th>
               <th style="width: 100px">Dentist</th>
-              <th style="width: 100px">Confirmed</th>
-              <th style="width: 100px">Action</th>
+              <th style="width: 100px">Treatment</th>
+              <th style="width: 100px">Cost</th>
+              <th style="width: 100px">Due Date</th>
+              <th style="width: 100px">Pay</th>
             </tr>
         <?php
-
+            //Connect to Database
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
-        
-            //Select all appointments in DB
-            $statement = $conn->prepare("SELECT * FROM Appointment");
+
+            //Select all bills belonging to the patient
+            $statement = $conn->prepare("SELECT * FROM Payment WHERE PatientID=?");
+            $statement->bindParam (1, $_SESSION['user_id']);
             $statement->execute();
         
             while($row=$statement->fetch()){
-              //Get dentist name
-              $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
-              $statement2->bindParam (1, $row['DentistID']);
-              $statement2->execute();
-              $row2=$statement2->fetch();
+                $billID = $row['ID']; 
+                $appointID = $row['AppointmentID']; 
+                $treatment = $row['Treatment'];
+                $cost = '£'.$row['Cost'].'0';
+                $due_date = $row['DueDate'];
+                $paid = $row['Paid'];
 
-              $ID = $row['ID'];
-              $patient = $row['PatientID']; 
-              $date = $row['Date'];
-              $stime = $row['StartTime'];
-              $etime = $row['EndTime'];
-              $dent_fn = $row2['FirstName'];
-              $dent_ln = $row2['LastName'];
-              $dent_name = $dent_fn." ".$dent_ln;
-              $conf = $row['Confirmation'];
+                //Get appointment date and dentist ID
+                $statement2 = $conn->prepare("SELECT Date, DentistID FROM Appointment WHERE ID=?");
+                $statement2->bindParam (1, $appointID);
+                $statement2->execute();
+                $appointment=$statement2->fetch();
+                $appoint_date = $appointment['Date'];
+                $dentistID = $appointment['DentistID'];
 
-              if ($conf === '0'){
-                $conf = "Pending";
-                $col = '#ff9933';
-              } elseif ($conf === '1') {
-                $conf = "Confirmed";
-                $col = 'green';
-              } elseif ($conf === '2') {
-              $conf = "Rejected";
-              $col = 'red';
-              }
-              //Display data in table row
-              echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent_name</td><td  style='color: $col'>$conf</td>";
-              echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Edit</button></form></td></tr>";
+                //Get dentist name
+                $statement3 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
+                $statement3->bindParam (1, $dentistID);
+                $statement3->execute();
+                $dentist=$statement3->fetch();
+                $dentist_name = $dentist['FirstName'].' '.$dentist['LastName'];
+                
+                //Display data in table row
+                echo "<tr style='border: 1px solid black;'><td>$appoint_date</td><td>$dentist_name</td><td>$treatment</td><td>$cost</td><td>$due_date</td>";
+                if ($paid==0) {
+                    echo "<td><form action='payBill.php' method='get'><input type='hidden' id='billID' name='billID' value='$billID'><button type='submit' class='btn btn-primary'>Pay</button></form></td></tr>";
+                } else if ($paid==1){
+                    echo "<td>Paid</td></tr>";
+                }
+                
             }
-            
         ?>
         </table>
         <br /><br />

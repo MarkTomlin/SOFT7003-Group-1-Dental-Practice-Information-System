@@ -113,7 +113,7 @@
 					<span class="err-icon">&nbsp;</span>
 					</div>
 
-					<button id="cancel">Cancel</button><button type="submit" name="action">Register</button>
+					<button type="button" id="cancel">Cancel</button><button type="submit" name="action">Register</button>
 				</form>
 				<br />
             </div>

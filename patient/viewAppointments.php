@@ -38,7 +38,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Mangament System</h1>
+    <h1 class="nt3 tc">Patient Management System</h1>
     <br /><br />
     <h2 class="nt3 tc">View Appointments</h2>
   

@@ -37,7 +37,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Administrator Mangament System</h1>
+    <h1 class="nt3 tc">Administrator Management System</h1>
     <br /><br />
     <h2 class="nt3 tc">Confirm Appointments</h2>
 

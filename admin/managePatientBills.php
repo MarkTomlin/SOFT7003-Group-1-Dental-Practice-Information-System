@@ -40,7 +40,7 @@
     <!-- Headings -->
     <h1 class="nt3 tc">Administrator Management System</h1>
     <br /><br />
-    <h2 class="nt3 tc">Edit Appointments</h2>
+    <h2 class="nt3 tc">Manage Patient Bills</h2>
     
 
     <!-- Content-->
@@ -48,52 +48,46 @@
       <div style="margin-top: 70px;">
         <table class="table table-bordered">
             <tr>
-              <th style="width: 100px">Patient</th>
               <th style="width: 100px">Date</th>
-              <th style="width: 100px">Start Time</th>
-              <th style="width: 100px">End Time</th>
-              <th style="width: 100px">Dentist</th>
-              <th style="width: 100px">Confirmed</th>
-              <th style="width: 100px">Action</th>
+              <th style="width: 100px">Patient</th>
+              <th style="width: 100px">Treatment</th>
+              <th style="width: 100px">Cost</th>
+              <th style="width: 100px">Due Date</th>
+              <th style="width: 100px">Manage</th>
             </tr>
         <?php
-
+            //Connect to Database
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
-        
-            //Select all appointments in DB
-            $statement = $conn->prepare("SELECT * FROM Appointment");
+
+            //Select all Bill from database that are unpaid
+            $statement = $conn->prepare("SELECT * FROM Payment WHERE Paid=0");
             $statement->execute();
         
             while($row=$statement->fetch()){
-              //Get dentist name
-              $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
-              $statement2->bindParam (1, $row['DentistID']);
-              $statement2->execute();
-              $row2=$statement2->fetch();
+                $billID = $row['ID'];
+                $patientID = $row['PatientID']; 
+                $appointID = $row['AppointmentID']; 
+                $treatment = $row['Treatment'];
+                $cost = '£'.$row['Cost'].'0';
+                $due_date = $row['DueDate'];
 
-              $ID = $row['ID'];
-              $patient = $row['PatientID']; 
-              $date = $row['Date'];
-              $stime = $row['StartTime'];
-              $etime = $row['EndTime'];
-              $dent_fn = $row2['FirstName'];
-              $dent_ln = $row2['LastName'];
-              $dent_name = $dent_fn." ".$dent_ln;
-              $conf = $row['Confirmation'];
+                //Get patient name
+                $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
+                $statement2->bindParam (1, $patientID);
+                $statement2->execute();
+                $patient=$statement2->fetch();
+                $patient_name = $patient['FirstName'].' '.$patient['LastName'];
 
-              if ($conf === '0'){
-                $conf = "Pending";
-                $col = '#ff9933';
-              } elseif ($conf === '1') {
-                $conf = "Confirmed";
-                $col = 'green';
-              } elseif ($conf === '2') {
-              $conf = "Rejected";
-              $col = 'red';
-              }
-              //Display data in table row
-              echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent_name</td><td  style='color: $col'>$conf</td>";
-              echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Edit</button></form></td></tr>";
+                //Get appointment date
+                $statement3 = $conn->prepare("SELECT Date FROM Appointment WHERE ID=?");
+                $statement3->bindParam (1, $appointID);
+                $statement3->execute();
+                $appointment=$statement3->fetch();
+                $appoint_date = $appointment['Date'];
+                
+                //Display data in table row
+                echo "<tr style='border: 1px solid black;'><td>$appoint_date</td><td>$patient_name</td><td>$treatment</td><td>$cost</td><td>$due_date</td>";
+                echo "<td><form action='billManage.php' method='get'><input type='hidden' id='patient_name' name='patient_name' value='$patient_name'><input type='hidden' id='billID' name='billID' value='$billID'><button type='submit' class='btn btn-primary'>Select</button></form></td></tr>";
             }
             
         ?>

@@ -49,7 +49,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Dentist Mangament System</h1>
+    <h1 class="nt3 tc">Dentist Management System</h1>
     <br />
     <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
     <br /><br /><br />

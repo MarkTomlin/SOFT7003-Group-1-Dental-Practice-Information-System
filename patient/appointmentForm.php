@@ -40,7 +40,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Mangament System</h1>
+    <h1 class="nt3 tc">Patient Management System</h1>
     <br /><br />
     <h2 class="nt3 tc">Appointment Request Form</h2>
     <br /><br /><br />
@@ -104,7 +104,7 @@
           <div><br /> 
         </div>
         <div class="d-flex justify-content-between" style="padding-top: 7%;">
-          <button class="btn btn-primary" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
+          <button class="btn btn-primary" type="button" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
           <button class="btn btn-primary" type="submit" name="action" style="width: 200px; height: 48px; padding-left: 20px;">Submit</button>
         </div>
         <br><br>

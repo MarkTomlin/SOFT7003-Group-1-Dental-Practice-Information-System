@@ -20,12 +20,12 @@
   <script type="text/javascript">
     window.onload=function(){
       var home_btn = document.getElementById('home');
-      var view_btn = document.getElementById('view');
+      var req_app_btn = document.getElementById('req_app');
       home_btn.addEventListener('click', function() {
         document.location.href = 'patientIndex.php';
       });
-      view_btn.addEventListener('click', function() {
-        document.location.href = 'viewAppointments.php';
+      req_app_btn.addEventListener('click', function() {
+        document.location.href = 'appointmentForm.php';
       });
     }
             
@@ -49,10 +49,11 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
     <br /><br />
-      <h3 class="display-4" style="color: green">Appointment Request Submitted!</h3>
+      <h3 class="display-4" style="color: red">Appointment not processed!</h3>
+      <p>The appointment time and date for the selected dentist has alreadly been booked.<br />Please try another time, date or dentist.</p>
       <div class="d-flex justify-content-between" style="padding-top: 7%; margin: auto; width: 40%;">  
         <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
-        <button class="btn btn-primary" id="view" style="width: 200px; height: 48px; padding-left: 5px;">View Appointments</button>
+        <button class="btn btn-primary" id="req_app" style="width: 200px; height: 48px; padding-left: 5px;">Request Appointment</button>
       </div>
     </div>
   </div>        

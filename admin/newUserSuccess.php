@@ -49,7 +49,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
     <br /><br />
-      <h3 class="display-4" style="color: green">New user has been created!</p>
+      <h3 class="display-4" style="color: green">New user has been created!</h3>
       <div class="d-flex justify-content-between" style="padding-top: 7%; margin: auto; width: 40%;">  
         <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
         <button class="btn btn-primary" id="add" style="width: 200px; height: 48px; padding-left: 5px;">Add Another User</button>

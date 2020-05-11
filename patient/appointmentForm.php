@@ -48,26 +48,27 @@
     <!-- Content-->
     <div class="container" style="margin: auto; width: 80%; border-radius: 25px; box-shadow: 0 0 3px gray;">
       <form method="POST" action="appointmentBookScript.php">
-        <br>
+        <br />
+        <h5>Please enter appointment details</h5><br /><br />
         <div class="form-group row">
             <label for="date" class="col-sm-2 col-form-label">Date:</label>
             <div class="col-sm-8">
               <input type="date" id="date" class="form-control" name="date" placeholder="Date" required> 
             </div>
-        </div><br>
+        </div>
         <div class="form-group row">
             <label for="time" class="col-sm-2 col-form-label">Time:   </label>
             <div class="col-sm-8">
               <select type="time" id="time" class="form-control" name="time" placeholder="Time" required>
                 <option value="" disabled selected>Please select a time</option>
-                <option value="9">9:00</option>
-                <option value="10">10:00</option>
-                <option value="11">11:00</option>
-                <option value="12">12:00</option>
-                <option value="13">13:00</option>
-                <option value="14">14:00</option>
-                <option value="15">15:00</option>
-                <option value="16">16:00</option>
+                <option value="9">9:00 - 10:00</option>
+                <option value="10">10:00 - 11:00</option>
+                <option value="11">11:00 - 12:00</option>
+                <option value="12">12:00 - 13:00</option>
+                <option value="13">13:00 - 14:00</option>
+                <option value="14">14:00 - 15:00</option>
+                <option value="15">15:00 - 16:00</option>
+                <option value="16">16:00 - 17:00</option>
               </select>  
             </div>
         </div>

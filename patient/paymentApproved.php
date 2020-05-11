@@ -49,7 +49,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
     <br /><br />
-      <h3 class="display-4" style="color: green">Payment of bill been processed and marked as paid!</p>
+      <h3 class="display-4" style="color: green">Payment of bill been processed and marked as paid!</h3>
       <div class="d-flex justify-content-between" style="padding-top: 7%; margin: auto; width: 40%;">  
         <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
         <button class="btn btn-primary" id="view" style="width: 200px; height: 48px; padding-left: 5px;">View Bills</button>

@@ -13,9 +13,10 @@
 
 	$conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 	
-	//Stops SQL injection 
+	//Create new user with INSERT SQL to Database 
 	$statement = $conn->prepare("INSERT INTO User (FirstName, LastName, Email, Password, PhoneNumber, Type) 
 		VALUES (?, ?, ?, ?, ?, ?)");
+	//bindParam stops SQL injection exploit
 	$statement->bindParam (1, $fn);
 	$statement->bindParam (2, $ln);
 	$statement->bindParam (3, $em);

@@ -1,6 +1,5 @@
 <?php
   session_start();
-  //var_dump(session_id());
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,8 +81,9 @@
 
                 $user_type = "dentist";
                 
-                //Stops SQL injection 
+                //Select user data from all dentist users
                 $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM User WHERE Type=?");
+                //bindParam stops SQL injection exploit
                 $statement->bindParam (1, $user_type);
                 $statement->execute();
 

@@ -1,6 +1,5 @@
 <?php
   session_start();
-  //var_dump(session_id());
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,8 +60,9 @@
           //Connect to Database
           $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
       
-          //Stops SQL injection 
+          //Select all appointments belonging to patient user 
           $statement = $conn->prepare("SELECT * FROM Appointment WHERE PatientID=? ORDER BY Date ASC");
+          //bindParam stops SQL injection exploit
           $statement->bindParam (1, $user_id);
           $statement->execute();
       

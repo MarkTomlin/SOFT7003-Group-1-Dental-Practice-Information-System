@@ -21,7 +21,7 @@
     window.onload=function(){
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
-        document.location.href = 'adminIndex.php';
+        document.location.href = 'dentistIndex.php';
       });
     }
             
@@ -38,62 +38,61 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Administrator Mangament System</h1>
+    <h1 class="nt3 tc">Dentist Mangament System</h1>
     <br /><br />
-    <h2 class="nt3 tc">Edit Appointments</h2>
+    <h2 class="nt3 tc">Submit Treatment Done</h2>
+    <br /><br />
+    <h3 class="nt3 tc">Your Appointments</h2>
     
-
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
         <table class="table table-bordered">
             <tr>
+              <th style="width: 100px">Date</th> 
+              <th style="width: 100px">Time</th>
               <th style="width: 100px">Patient</th>
-              <th style="width: 100px">Date</th>
-              <th style="width: 100px">Start Time</th>
-              <th style="width: 100px">End Time</th>
-              <th style="width: 100px">Dentist</th>
-              <th style="width: 100px">Confirmed</th>
-              <th style="width: 100px">Action</th>
+              <th style="width: 100px">Submit Treatment</th>
             </tr>
         <?php
-
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
         
-            //Select all appointments in DB
-            $statement = $conn->prepare("SELECT * FROM Appointment");
+            //Stops SQL injection 
+            $statement = $conn->prepare("SELECT * FROM Appointment WHERE DentistID=?");
+            $statement->bindParam (1, $_SESSION["user_id"]);
             $statement->execute();
         
             while($row=$statement->fetch()){
-              //Get dentist name
+              //Get patient name
               $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
-              $statement2->bindParam (1, $row['DentistID']);
+              $statement2->bindParam (1, $row['PatientID']);
               $statement2->execute();
               $row2=$statement2->fetch();
 
-              $ID = $row['ID'];
-              $patient = $row['PatientID']; 
+              //Set data variables
+              $appointID = $row['ID'];
+              $patientID = $row['PatientID']; 
               $date = $row['Date'];
-              $stime = $row['StartTime'];
-              $etime = $row['EndTime'];
-              $dent_fn = $row2['FirstName'];
-              $dent_ln = $row2['LastName'];
-              $dent_name = $dent_fn." ".$dent_ln;
-              $conf = $row['Confirmation'];
+              $time = substr($row['StartTime'], 0, -3).' - '.substr($row['EndTime'], 0, -3); //remove seconds from time format and set as one string
+              $patient_fn = $row2['FirstName'];
+              $patient_ln = $row2['LastName'];
+              $patient_name = $patient_fn." ".$patient_ln;
 
-              if ($conf === '0'){
-                $conf = "Pending";
-                $col = '#ff9933';
-              } elseif ($conf === '1') {
-                $conf = "Confirmed";
-                $col = 'green';
-              } elseif ($conf === '2') {
-              $conf = "Rejected";
-              $col = 'red';
-              }
               //Display data in table row
-              echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent_name</td><td  style='color: $col'>$conf</td>";
-              echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Edit</button></form></td></tr>";
+              echo "<tr style='border: 1px solid black;'><td>$date</td><td>$time</td><td>$patient_name</td>";
+
+              //Check if already submitted
+              $statement3 = $conn->prepare("SELECT ID FROM Payment WHERE AppointmentID=?");
+              $statement3->bindParam (1, $appointID);
+              $statement3->execute();
+              $row3=$statement3->fetch();
+              
+              //if no payment bill already submitted, display button for new submission 
+              if ($row3==false){
+                echo "<td><form action='treatmentForm.php' method='get'><input type='hidden' id='appointID' name='appointID' value='$appointID'><input type='hidden' id='patient_name' name='patient_name' value='$patient_name'><button type='submit' class='btn btn-primary'>Submit</button></form></td></tr>";
+              } else {
+                echo "<td>Submitted</td></tr>";
+              }
             }
             
         ?>

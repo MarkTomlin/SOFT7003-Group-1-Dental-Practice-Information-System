@@ -3,6 +3,7 @@
     
     $user_id = $_SESSION["user_id"] ;
 
+    //Get form variables
 	$date = $_POST["date"];	
 	$time = $_POST["time"];	
 	$dent = $_POST["dent"];
@@ -18,9 +19,10 @@
 	
 	$conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 	
-	//Stops SQL injection 
+	//INSERT SQL statement 
 	$statement = $conn->prepare("INSERT INTO Appointment (PatientID, DentistID, Date, StartTime, Endtime, Reason, Emergency, Confirmation) 
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    //bindParam stops SQL injection
 	$statement->bindParam (1, $user_id);
 	$statement->bindParam (2, $dent);
 	$statement->bindParam (3, $date);

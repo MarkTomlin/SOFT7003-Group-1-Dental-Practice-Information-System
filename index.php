@@ -50,42 +50,69 @@
           <img src="images/group One.png" class="dib w5 h5 br-100" alt="Site Name">
         </a>
         <div class="dtc v-mid w-75 tr">
-            <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="About">About</a>
+            <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="About">About Us</a>
             <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="About">Services</a>
-          <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="Store">Testimonials</a>
-          <!-- <a class="link dim dark-gray f6 f4-ns dib grow" href="#" title="Contact">Admin</a> -->
+          <!-- <a class="link dim dark-gray f6 f4-ns dib mr3 mr4-ns grow" href="about.html" title="Store">Contact Us</a>
+          <a class="link dim dark-gray f6 f4-ns dib grow" href="#" title="Contact">Admin</a> -->
           <a href="login.php"><button class="btn" type="button">Login</button></a>
         </div>
-      </nav>   
+     </nav>   
       
     <!-- Welcome section -->
-    <div class="tc welcome">
+    <div class="tc welcome mb5">
         <h1 class="f1">Welcome to OneDental Clinic!</h1>
+        <h2>We're happy when we make you smile.</h2>
+        <br>
+        <p>Having problems with your teeth? Or you would like to talk about something bothering you?
+         Please make an appointment today.</p> <br>
         <p></p>
-            <input type="sub" name="trial" value="MAKE AN APPOINTMENT">
+          <a href="#makean"><input type="sub" name="trial" value="MAKE AN APPOINTMENT"></a>
+            
     </div>
    </header> 
 
-
+    <!-- Banner -->
+    <div class="dt-ns dt--fixed-ns">
+      <div class="dtc-ns tc pv4 bg-washed-green">
+        <img src="images/call-icon.png" alt="">
+        <h3 class="f3">EMERGENCY CASES?</h3>
+        <h4 class="f4">CALL US NOW</h4>
+        <p class="b">1-800-123-4567</p>
+      </div>
+      <div class="dtc-ns tc pv4 ">
+        <img src="images/location-map.png" alt="">
+        <h3 class="f3">LOCATION</h3>
+        <p>Wheatley Campus, Oxford OX33 1HX</p>
+      </div>
+      <div class="dtc-ns tc pv4 bg-washed-green">
+        <img src="images/clock-icon.png" alt="">
+        <h3 class="f3">WORKING HOURS</h3>
+        <p>Monday to Friday: 8am - 5pm</p>
+      </div>
+    </div>
 
     <!-- Appointment-->
-    <div class="mw9 center ph3-ns mt5 ">
+    <div class="mw9 center ph3-ns mt3 ">
       <div class="cf ph2-ns">
-        <div class="fl w-100 w-40-ns pa2 pl4-ns">
-          <div class="">
-              <i class="flaticon-flag"></i>
-              <h4 class="b">Emergency Cases</h4>
-              <p class=""></p>
-              <a class="f6 link dim br1 ba ph3 pv2 mb2 dib dark-green glow grow"><i class="fa fa-phone"></i> 1-800-123-4567</a>
-          </div>
-          <h4 class="">Available Dates</h4>
-          <img src="images/calendar.png" class="w6 h5">
-
+        <div class="fl w-100 w-40-ns pa2">
+        <h3 class=" tc b">Opening Hours</h3>
+            <ul class="opening-hours">
+              <li>Mon - Tues: <span class="pl3">9.00AM - 17.00PM</span></li>
+              <li>Wednesday: <span class="pl2">9.00AM - 17.00PM</span></li>
+              <li>Thursday: <span class="pl3">9.00AM - 17.00PM</span></li>
+              <li>Friday: <span class="pl3">9.00AM - 17.00PM</span></li>
+              <li>Saturday: <span class="pl3">Closed</span></li>
+          </ul>
+         
+          <h3 class="tc b">Available Dates</h3>
+          <!-- <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FLondon&amp;src=MTkwMzg1MjFAYnJvb2tlcy5hYy51aw&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=aThrbW5iNnBwc3BhZGxsbzc0dm5oNDM1cTc2MzQ0OHBAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZW4udWsjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%23039BE5&amp;color=%2333B679&amp;color=%23A79B8E&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="400" frameborder="0" scrolling="no"></iframe>
+          <img src="images/calendar.png" class="w6 h5"> -->
+          <iframe  scrolling="no" frameborder="0" src="http://30boxes.com/widget/8589900/Jshjccfjwhkmadgytojshjccfjwhkmadgyto/d0bb5df51d538a864917816c2d47a1f7/0/" width="400" height="400" style="border: none; overflow: hidden;"></iframe>
         </div>
 
-        <div class="fl w-100 w-60-ns pa2">
+        <div class="fl w-100 w-60-ns mt4">
           <aside class="pl6-ns">
-            <p class="b black">Please fill the form and we will be in touch right away. Thanks</p>
+            <h3  id="makean" class="b black">Please fill the form and we will be in touch right away. Thanks</h3>
             <div class="form">
               <form method="GET" name="myForm" onsubmit="return formValidation() ">
                 <div class="form-field">
@@ -113,6 +140,26 @@
                 </div>
                 
                 
+
+                <div class="form-field mb2">
+                <label class="gray" for="days">Please select a day</label>
+                  <select placeholder="Select a day" class="ba gray pa2 db w-90">
+                    <option value="Monda">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                  </select>
+                   <br>
+                </div>
+
+                <div class="form-field mb1">
+                  <label for="" class="gray">Preffered time:</label>
+                  <input class="ba gray pa2 db w-90" type="date" id="appointment" name="date" placeholder="Preferred time"> <br>
+                </div>
+                
+                
                 <input type="subm" name="trial" value="BOOK AN APPOINTMENT">
                 <h5><font color="gray">By clicking the button, you are agreeing to our </font> <font color="red">Terms and Services</font>By clicking the button, you are agreeing to our </font>></h5>
                 
@@ -129,54 +176,20 @@
     
 
 </div>
+
     <!--Footer-->
-    <footer>
-        <!--About-->
-        <div>
+ 
 
-        </div>
-        <!--Hours-->
-        <div>
-
-        </div>
-
-        <!--Links-->
-        <div>
-
-        </div>
-
-        <!--Contact Info-->
-        <div>
-            
-        </div>
-
-    </footer>
-
-    <footer class="pa4 pa5-l black-70 bt b--black-10">
-      <section class="cf mb5">
-        <!--Newsletter-->
-        <!-- <div class="mb4 mb0-ns w-100 w-50-l fr">
-          <a class="black-70 f3 f2-ns fw6 tl link dim dib pv3 mt2 mb4 mb0-l" href="mailto:hello@impossible.com" >
-            hello@yourcompany.com
-          </a>
-        </div> -->
-        <!-- <div class="mb4 mb0-ns fl w-100 w-50-l" >
-          <p class="f4 fw6 mb2 f6 mt0">
-            Sign up for our newsletter.
-          </p>
-          <input placeholder="Email Address" class="mw-100 w-100 w5-ns f5 input-reset ba b--black-20 pv3 ph4 border-box">
-          <input type="submit" class="input-reset w-100 w-auto-ns bg-black-80 white f5 pv2 pv3-ns ph4 ba b--black-80 bg-hover-mid-gray !important">
-        </div> -->
-      </section>
-
+    <footer class="pa4 pa5-l black-70 b--black-10 mt5">
       <!--Footer-->
-      <div class="mw-100 center ph3-ns bt b--black-10 pt1">
+      <div class="mw-100 center ph3-ns b--black-10 pt1">
         <div class="cf ph2-ns">
           <div class="fl w-100 w-25-ns pa2">
             <img src="images/group One.png" class="dib w3 h3 br-100" alt="Site Name">
-            <p>
-          
-            </p>
+            <H3>Wheatley Campus</H3>
+            <h3>Oxford OX33 1HX</h3>
+            <p class="b">1-800-123-4567</p>
+            <p class="b">info@onedental.com</p>
           </div>
           <div class="fl w-100 w-25-ns pa2">
             <h3 class="tc b">Opening Hours</h3>
@@ -189,18 +202,18 @@
           </ul>
           </div>
           <div class="fl w-100 w-25-ns pa2 tc">
-            <h3>Links</h3>
+            <h3> Quick Links</h3>
             <div class=" lh-copy">
-              <a class="f4 fw4 db black link dim" href="#0">Home</a>
-              <a class="f4 fw4 db black link dim" href="#0">Doctors </a>
-              <a class="f4 fw4 db black link dim" href="#0">Appointments </a>
-              <a class="f4 fw4 db black link dim" href="#0">Admin</a>
-              <a class="f4 fw4 db black link dim" href="#0">Login</a>
+              <a class="f4 fw4 db gray link dim" href="#0">Home</a>
+              <a class="f4 fw4 db gray link dim" href="#0">Services</a>
+              <a class="f4 fw4 db gray link dim" href="#0">Appointments </a>
+              <a class="f4 fw4 db gray link dim" href="#0">Contact Us</a>
+              <a class="f4 fw4 db gray link dim" href="#0">Login</a>
                       
           </div>
           </div>
           <div class="fl w-100 w-25-ns pa2">
-            
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2470.108227384152!2d-1.129271748843237!3d51.74934450070556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876ea164a0ab725%3A0x25f245690f7953e2!2sOxford%20Brookes%20University%2C%20Wheatley%20Campus!5e0!3m2!1sen!2suk!4v1589127410101!5m2!1sen!2suk" width="300" height="250" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
           </div>
         </div>
       </div>
@@ -228,45 +241,11 @@
               ></path>
             </svg>
           </a>
-          <a class="link dim dib mr3 black-70" title="Impossible Labs on Medium">
-            <svg class="db w2 h2" x="0px" y="0px" viewBox="0 0 290 248.6"
-              fill="currentColor" >
-              <g >
-                <path fill="currentColor" class="st0" d="M287.8,46.3L196,0.3c-0.4-0.2-0.9-0.3-1.3-0.3c0,0-0.1,0-0.1,0c-1.1,0-2.2,0.6-2.8,1.5l-56.6,92l63.2,102.7 l90.4-146.9C289.4,48.3,289,46.8,287.8,46.3z"
-                ></path>
-                <polygon fill="currentColor" points="105.2,61.2 105.2,160.3 193.3,204.4 	"
-                ></polygon>
-                <path fill="currentColor" d="M201,208.2l80.9,40.5c4.4,2.2,8,0,8-5v-180L201,208.2z"
-                ></path>
-                <path fill="currentColor" d="M95.5,46.7L10.7,4.3L5.4,1.7C4.6,1.3,3.8,1.1,3.2,1.1c-0.9,0-1.7,0.4-2.3,1.1C0.3,2.8,0,3.8,0,5v193.4 c0,3.3,2.4,7.2,5.4,8.7l83.3,41.6c1.2,0.6,2.3,0.9,3.3,0.9c2.8,0,4.8-2.2,4.8-5.8V48.7C96.7,47.8,96.2,47.1,95.5,46.7z"
-                ></path>
-              </g>
-            </svg>
-          </a>
-          <a class="link dim dib black-70">
-            <svg class="db w2 h2" x="0px" y="0px" viewBox="0 0 48 48" >
-              <linearGradient gradientUnits="userSpaceOnUse" x1="23.9995"
-                y1="0" x2="23.9995" y2="48.0005" >
-                <stop offset="0" ></stop>
-                <stop offset="1" ></stop>
-              </linearGradient>
-              <path fill="currentColor" d="M48,42c0,3.313-2.687,6-6,6H6c-3.313,0-6-2.687-6-6V6 c0-3.313,2.687-6,6-6h36c3.313,0,6,2.687,6,6V42z"
-              ></path>
-              <g >
-                <g >
-                  <path fill="#FFFFFF" d="M15.731,11.633c-1.608,0-2.658,1.083-2.625,2.527c-0.033,1.378,1.018,2.494,2.593,2.494 c1.641,0,2.691-1.116,2.691-2.494C18.357,12.716,17.339,11.633,15.731,11.633z M13.237,35.557h4.988V18.508h-4.988V35.557z M31.712,18.748c-1.595,0-3.222-0.329-4.956,2.36h-0.099l-0.087-2.599h-4.417c0.065,1.411,0.074,3.518,0.074,5.52v11.529h4.988 v-9.854c0-0.46,0.065-0.919,0.196-1.248c0.328-0.919,1.149-1.871,2.527-1.871c1.805,0,2.527,1.411,2.527,3.479v9.494h4.988V25.439 C37.455,20.713,34.993,18.748,31.712,18.748z"
-                  ></path>
-                </g>
-              </g>
-            </svg>
-          </a>
+          
+         
         </div>
       </div>
-      <div class="db dn-ns">
-        <p class="f7 black-70 mt4 tc">
-          Copyright © Your Company 2038
-        </p>
-      </div>
+      
     </footer>
 </body>
 </html>

@@ -23,8 +23,16 @@
   <script type="text/javascript">
     window.onload=function(){
       var view_pat_btn = document.getElementById('view_pat');
+      var sub_treat_btn = document.getElementById('sub_treat');
+      var view_today_btn = document.getElementById('view_today');
       view_pat_btn.addEventListener('click', function() {
         document.location.href = 'viewPatientRecords.php';
+      });
+      sub_treat_btn.addEventListener('click', function() {
+        document.location.href = 'submitTreatment.php';
+      });
+      view_today_btn.addEventListener('click', function() {
+        document.location.href = 'viewTodayAppointments.php';
       });
     }
             
@@ -41,7 +49,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Dentist Mangament System</h1>
+    <h1 class="nt3 tc">Dentist Management System</h1>
     <br />
     <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
     <br /><br /><br />
@@ -52,13 +60,16 @@
         <button id='view_cal'  class="btn btn-primary" style="width: 380px">View Appointment Calender</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
+        <button id='view_today'  class="btn btn-primary" style="width: 380px">View Today's Appointments</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
+        <button id='sub_treat' class="btn btn-primary" style="width: 380px">Submit Treatment Done</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
         <button id='view_pat' class="btn btn-primary" style="width: 380px">View Patient Records</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
-        <button id='reg_acc' class="btn btn-primary" style="width: 380px">Submit Treatment Done</button>
-      </div><br />
-      <div class="row mb3" style="justify-content: center;">
-        <button id='reg_acc' class="btn btn-primary" style="width: 380px">Confirm Emergenct Appointment</button>
+        <button id='conf_e_app' class="btn btn-primary" style="width: 380px">Confirm Emergency Appointment</button>
       </div><br />
     </div>
   </div>        

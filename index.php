@@ -56,9 +56,9 @@
           <a class="link dim dark-gray f6 f4-ns dib grow" href="#" title="Contact">Admin</a> -->
           <a href="login.php"><button class="btn" type="button">Login</button></a>
         </div>
-      </nav>
-<!--     
-    <!- Welcome section -->
+     </nav>   
+      
+    <!-- Welcome section -->
     <div class="tc welcome mb5">
         <h1 class="f1">Welcome to OneDental Clinic!</h1>
         <h2>We're happy when we make you smile.</h2>

@@ -1,6 +1,5 @@
 <?php
   session_start();
-  //var_dump(session_id());
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +40,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Mangament System</h1>
+    <h1 class="nt3 tc">Patient Management System</h1>
     <br /><br />
     <h2 class="nt3 tc">Appointment Request Form</h2>
     <br /><br /><br />
@@ -49,26 +48,27 @@
     <!-- Content-->
     <div class="container" style="margin: auto; width: 80%; border-radius: 25px; box-shadow: 0 0 3px gray;">
       <form method="POST" action="appointmentBookScript.php">
-        <br>
+        <br />
+        <h5>Please enter appointment details</h5><br /><br />
         <div class="form-group row">
             <label for="date" class="col-sm-2 col-form-label">Date:</label>
             <div class="col-sm-8">
               <input type="date" id="date" class="form-control" name="date" placeholder="Date" required> 
             </div>
-        </div><br>
+        </div>
         <div class="form-group row">
             <label for="time" class="col-sm-2 col-form-label">Time:   </label>
             <div class="col-sm-8">
               <select type="time" id="time" class="form-control" name="time" placeholder="Time" required>
                 <option value="" disabled selected>Please select a time</option>
-                <option value="9">9:00</option>
-                <option value="10">10:00</option>
-                <option value="11">11:00</option>
-                <option value="12">12:00</option>
-                <option value="13">13:00</option>
-                <option value="14">14:00</option>
-                <option value="15">15:00</option>
-                <option value="16">16:00</option>
+                <option value="9">9:00 - 10:00</option>
+                <option value="10">10:00 - 11:00</option>
+                <option value="11">11:00 - 12:00</option>
+                <option value="12">12:00 - 13:00</option>
+                <option value="13">13:00 - 14:00</option>
+                <option value="14">14:00 - 15:00</option>
+                <option value="15">15:00 - 16:00</option>
+                <option value="16">16:00 - 17:00</option>
               </select>  
             </div>
         </div>
@@ -82,8 +82,9 @@
 
                 $user_type = "dentist";
                 
-                //Stops SQL injection 
+                //Select user data from all dentist users
                 $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM User WHERE Type=?");
+                //bindParam stops SQL injection exploit
                 $statement->bindParam (1, $user_type);
                 $statement->execute();
 
@@ -104,7 +105,7 @@
           <div><br /> 
         </div>
         <div class="d-flex justify-content-between" style="padding-top: 7%;">
-          <button class="btn btn-primary" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
+          <button class="btn btn-primary" type="button" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
           <button class="btn btn-primary" type="submit" name="action" style="width: 200px; height: 48px; padding-left: 20px;">Submit</button>
         </div>
         <br><br>

@@ -1,6 +1,5 @@
 <?php
     session_start();
-    //var_dump(session_id());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +38,7 @@
     <?php include("../navbar.php"); ?>
 
     <!-- Headings -->
-    <h1 class="nt3 tc">Dentist Mangament System</h1>
+    <h1 class="nt3 tc">Dentist Management System</h1>
     <br /><br />
     <h2 class="nt3 tc">View Patient Records</h2>
     <br /><br />
@@ -60,7 +59,7 @@
             //Connect to Database
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 
-            //Stops SQL injection 
+            //Select all patient users in database User table 
             $statement = $conn->prepare("SELECT * FROM User WHERE Type='patient'");
             $statement->execute();
         

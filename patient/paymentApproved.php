@@ -1,8 +1,5 @@
 <?php
   session_start();
-
-  $fname = $_SESSION["fname"] ;
-  $lname = $_SESSION["lname"] ;
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +7,7 @@
 
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  
   <title>Dental Info System</title>
 
   <!-- Import Bootstrap -->
@@ -22,16 +19,12 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
-      var book_app_btn = document.getElementById('book_app');
-      var view_app_btn = document.getElementById('view_app');
-      var view_bills_btn = document.getElementById('view_bills');
-      book_app_btn.addEventListener('click', function() {
-        document.location.href = 'appointmentForm.php';
+      var home_btn = document.getElementById('home');
+      var view_btn = document.getElementById('view');
+      home_btn.addEventListener('click', function() {
+        document.location.href = 'PatientIndex.php';
       });
-      view_app_btn.addEventListener('click', function() {
-        document.location.href = 'viewAppointments.php';
-      });
-      view_bills_btn.addEventListener('click', function() {
+      view_btn.addEventListener('click', function() {
         document.location.href = 'viewBills.php';
       });
     }
@@ -50,29 +43,18 @@
     
     <!-- Headings -->
     <h1 class="nt3 tc">Patient Management System</h1>
-    <br />
-    <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
-    <br /><br /><br />
-
+    <br /><br />
+    <h2 class="nt3 tc">Bill Payment</h2>
+    
     <!-- Content-->
-    <div class="mw-70 center mt5">
-      <div class="row mb3" style="justify-content: center;">
-        <button id='view_cal' class="btn btn-primary" style="width: 380px">View Appointment Calender</button>
-      </div><br />
-      <div class="row mb3" style="justify-content: center;">
-        <button id='book_app' class="btn btn-primary" style="width: 380px">Request Appointment</button>
-      </div><br />
-      <div class="row mb3" style="justify-content: center;">
-        <button id='view_app' class="btn btn-primary" style="width: 380px">View My Appointments</button>
-      </div><br />
-      <div class="row mb3" style="justify-content: center;">
-        <button id='view_bills' class="btn btn-primary" style="width: 380px">View Bills</button>
-      </div><br />
-      <div class="row mb3" style="justify-content: center;">
-        <button id='edit_acc' class="btn btn-primary" style="width: 380px">Edit Account Details</button>
+    <div style="margin: auto; width: 80%;">
+    <br /><br />
+      <h3 class="display-4" style="color: green">Payment of bill been processed and marked as paid!</h3>
+      <div class="d-flex justify-content-between" style="padding-top: 7%; margin: auto; width: 40%;">  
+        <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
+        <button class="btn btn-primary" id="view" style="width: 200px; height: 48px; padding-left: 5px;">View Bills</button>
       </div>
     </div>
-  
   </div>        
 </body>
 </html>

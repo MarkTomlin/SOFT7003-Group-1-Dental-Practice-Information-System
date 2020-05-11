@@ -20,12 +20,12 @@
   <script type="text/javascript">
     window.onload=function(){
       var home_btn = document.getElementById('home');
-      var view_btn = document.getElementById('view');
+      var add_btn = document.getElementById('add');
       home_btn.addEventListener('click', function() {
-        document.location.href = 'patientIndex.php';
+        document.location.href = 'adminIndex.php';
       });
-      view_btn.addEventListener('click', function() {
-        document.location.href = 'viewAppointments.php';
+      add_btn.addEventListener('click', function() {
+        document.location.href = 'createUserForm.php';
       });
     }
             
@@ -42,17 +42,17 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Patient Management System</h1>
+    <h1 class="nt3 tc">Administrator Management System</h1>
     <br /><br />
-    <h2 class="nt3 tc">Appointment Request Form</h2>
+    <h2 class="nt3 tc">Register New User</h2>
     
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
     <br /><br />
-      <h3 class="display-4" style="color: green">Appointment Request Submitted!</h3>
+      <h3 class="display-4" style="color: green">New user has been created!</h3>
       <div class="d-flex justify-content-between" style="padding-top: 7%; margin: auto; width: 40%;">  
         <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>
-        <button class="btn btn-primary" id="view" style="width: 200px; height: 48px; padding-left: 5px;">View Appointments</button>
+        <button class="btn btn-primary" id="add" style="width: 200px; height: 48px; padding-left: 5px;">Add Another User</button>
       </div>
     </div>
   </div>        

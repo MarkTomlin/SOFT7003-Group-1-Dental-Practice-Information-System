@@ -25,6 +25,8 @@
       var conf_app_btn = document.getElementById('conf_app');
       var edit_app_btn = document.getElementById('edit_app');
       var view_pat_btn = document.getElementById('view_pat');
+      var man_bill_btn = document.getElementById('man_bill');
+      var reg_acc_btn = document.getElementById('reg_acc');
       conf_app_btn.addEventListener('click', function() {
         document.location.href = 'appointmentConfirm.php';
       });
@@ -33,6 +35,12 @@
       });
       view_pat_btn.addEventListener('click', function() {
         document.location.href = 'viewPatients.php';
+      });
+      man_bill_btn.addEventListener('click', function() {
+        document.location.href = 'managePatientBills.php';
+      });
+      reg_acc_btn.addEventListener('click', function() {
+        document.location.href = 'createUserForm.php';
       });
     }
             
@@ -49,7 +57,7 @@
     <?php include("../navbar.php"); ?>
     
     <!-- Headings -->
-    <h1 class="nt3 tc">Administrator Mangament System</h1>
+    <h1 class="nt3 tc">Administrator Management System</h1>
     <br />
     <h3 class="nt3 tc">Greetings <?= $fname ?> <?= $lname ?></h3>
     <br /><br /><br />
@@ -66,7 +74,7 @@
         <button id='edit_app' class="btn btn-primary" style="width: 380px">Edit Appointments</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
-        <button id='cre_bill'  class="btn btn-primary" style="width: 380px">Create Patient Bill</button>
+        <button id='man_bill'  class="btn btn-primary" style="width: 380px">Manage Patient Bills</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
         <button id='view_pat' class="btn btn-primary" style="width: 380px">View Patients</button>

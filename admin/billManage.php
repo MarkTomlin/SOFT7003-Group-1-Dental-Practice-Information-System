@@ -25,19 +25,6 @@
         btn.addEventListener('click', function() {
             document.location.href = 'managePatientBills.php';
         });
-
-        //Jquery for setting cost by radio selection
-        $(radioSet).change(function() {
-            var selected_value = $("input[name='gridRadios']:checked").val();
-            
-            if (selected_value === 'Examination'){
-                $("input[name='cost']").val("£22.70"); //display value in currency format
-            } else if (selected_value === 'Minor Treatment'){
-                $("input[name='cost']").val("£62.10"); //display value in currency format
-            } else if (selected_value === 'Surgery'){
-                $("input[name='cost']").val("£269.30"); //display value in currency format
-            }
-        });
     }
             
   </script>

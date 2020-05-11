@@ -26,6 +26,7 @@
       var edit_app_btn = document.getElementById('edit_app');
       var view_pat_btn = document.getElementById('view_pat');
       var man_bill_btn = document.getElementById('man_bill');
+      var reg_acc_btn = document.getElementById('reg_acc');
       conf_app_btn.addEventListener('click', function() {
         document.location.href = 'appointmentConfirm.php';
       });
@@ -37,6 +38,9 @@
       });
       man_bill_btn.addEventListener('click', function() {
         document.location.href = 'managePatientBills.php';
+      });
+      reg_acc_btn.addEventListener('click', function() {
+        document.location.href = 'createUserForm.php';
       });
     }
             

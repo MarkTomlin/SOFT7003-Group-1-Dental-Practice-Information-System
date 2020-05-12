@@ -87,7 +87,7 @@
                 $appointment=$statement3->fetch();
                 $appoint_date = $appointment['Date'];
                 
-                //Display data in table row
+                //Display data in table row + form button to go to individual bill management page
                 echo "<tr style='border: 1px solid black;'><td>$appoint_date</td><td>$patient_name</td><td>$treatment</td><td>$cost</td><td>$due_date</td>";
                 echo "<td><form action='billManage.php' method='get'><input type='hidden' id='patient_name' name='patient_name' value='$patient_name'><input type='hidden' id='billID' name='billID' value='$billID'><button type='submit' class='btn btn-primary'>Select</button></form></td></tr>";
             }

@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var home_btn = document.getElementById('home');
       home_btn.addEventListener('click', function() {
         document.location.href = 'adminIndex.php';
@@ -44,6 +45,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
+        <!-- Unconfirmed Appointments Table -->
         <table class="table table-bordered">
           <tr>
             <th style="width: 100px">Patient</th>
@@ -56,14 +58,16 @@
           <?php
             $false_conf = 0;
 
+            //Connect to database via PDO
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
         
-            //Select appointments from database that are not confirmed 
+            //Select appointments from database that are pending confirmation 
             $statement = $conn->prepare("SELECT * FROM Appointment WHERE Confirmation=?");
             //bindParam stops SQL injection exploit
             $statement->bindParam (1, $false_conf);
             $statement->execute();
-        
+
+            //loop through each appointment found
             while($row=$statement->fetch()){
               $ID = $row['ID'];
               $patient = $row['PatientID'];  
@@ -72,6 +76,7 @@
               $etime = $row['EndTime'];
               $dent = $row['DentistID'];
 
+              //get dentist's full name
               $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
               $statement2->bindParam (1, $dent);
               $statement2->execute();
@@ -79,6 +84,7 @@
               $fname_dentist=$dentist['FirstName'];
               $lname_dentist=$dentist['LastName'];
 
+              //get patient's full name
               $statement3 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
               $statement3->bindParam (1, $patient);
               $statement3->execute();
@@ -86,7 +92,7 @@
               $fname_patient=$patientName['FirstName'];
               $lname_patient=$patientName['LastName'];
 
-              //Display data in table row
+              //Display data in table row + form buttons for reject and confirm
               echo "<tr style='border: 1px solid black;'><td>$fname_patient $lname_patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$fname_dentist $lname_dentist</td>
               <td style='width: 10%'><div class='d-flex justify-content-around' style='justify-content: center; width: 200px; margin: 0px'>
               <form action='appointmentRejectScript.php' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Reject</button></form>

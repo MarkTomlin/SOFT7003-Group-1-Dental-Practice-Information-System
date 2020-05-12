@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
         document.location.href = 'adminIndex.php';
@@ -46,6 +47,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
+        <!-- Unpaid Bills Table -->
         <table class="table table-bordered">
             <tr>
               <th style="width: 100px">Date</th>
@@ -59,7 +61,7 @@
             //Connect to Database
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 
-            //Select all Bill from database that are unpaid
+            //Select all Bills from database that are unpaid
             $statement = $conn->prepare("SELECT * FROM Payment WHERE Paid=0");
             $statement->execute();
         
@@ -76,7 +78,7 @@
                 $statement2->bindParam (1, $patientID);
                 $statement2->execute();
                 $patient=$statement2->fetch();
-                $patient_name = $patient['FirstName'].' '.$patient['LastName'];
+                $patient_name = $patient['FirstName'].' '.$patient['LastName']; ////set full name as one string variable
 
                 //Get appointment date
                 $statement3 = $conn->prepare("SELECT Date FROM Appointment WHERE ID=?");

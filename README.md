@@ -4,7 +4,7 @@ This is the source files for our group project application:
 
 A small Dental Practice information and management Web Application
 
-Once logged in, the user will be redirected to own user specific application
+Once logged in, the user will be redirected to their own user specific application
 These user application files are sperated in the file structure, inside the folder name of the user type.
 
 

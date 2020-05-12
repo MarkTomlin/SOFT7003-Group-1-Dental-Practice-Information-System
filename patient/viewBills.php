@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
         document.location.href = 'patientIndex.php';
@@ -46,17 +47,18 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
+        <!-- Bill Table -->
         <table class="table table-bordered">
-            <tr>
-              <th style="width: 100px">Date</th>
-              <th style="width: 100px">Dentist</th>
-              <th style="width: 100px">Treatment</th>
-              <th style="width: 100px">Cost</th>
-              <th style="width: 100px">Due Date</th>
-              <th style="width: 100px">Pay</th>
-            </tr>
-        <?php
-            //Connect to Database
+          <tr>
+            <th style="width: 100px">Date</th>
+            <th style="width: 100px">Dentist</th>
+            <th style="width: 100px">Treatment</th>
+            <th style="width: 100px">Cost</th>
+            <th style="width: 100px">Due Date</th>
+            <th style="width: 100px">Pay</th>
+          </tr>
+          <?php
+            //Connect to Database via PDO 
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 
             //Select all bills belonging to the patient
@@ -64,39 +66,41 @@
             $statement->bindParam (1, $_SESSION['user_id']);
             $statement->execute();
         
+            //loop through all bill found
             while($row=$statement->fetch()){
-                $billID = $row['ID']; 
-                $appointID = $row['AppointmentID']; 
-                $treatment = $row['Treatment'];
-                $cost = '£'.$row['Cost'].'0';
-                $due_date = $row['DueDate'];
-                $paid = $row['Paid'];
+              //set bill data to new variables
+              $billID = $row['ID']; 
+              $appointID = $row['AppointmentID']; 
+              $treatment = $row['Treatment'];
+              $cost = '£'.$row['Cost'].'0';
+              $due_date = $row['DueDate'];
+              $paid = $row['Paid'];
 
-                //Get appointment date and dentist ID
-                $statement2 = $conn->prepare("SELECT Date, DentistID FROM Appointment WHERE ID=?");
-                $statement2->bindParam (1, $appointID);
-                $statement2->execute();
-                $appointment=$statement2->fetch();
-                $appoint_date = $appointment['Date'];
-                $dentistID = $appointment['DentistID'];
+              //Get appointment date and dentist ID
+              $statement2 = $conn->prepare("SELECT Date, DentistID FROM Appointment WHERE ID=?");
+              $statement2->bindParam (1, $appointID);
+              $statement2->execute();
+              $appointment=$statement2->fetch();
+              $appoint_date = $appointment['Date'];
+              $dentistID = $appointment['DentistID'];
 
-                //Get dentist name
-                $statement3 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
-                $statement3->bindParam (1, $dentistID);
-                $statement3->execute();
-                $dentist=$statement3->fetch();
-                $dentist_name = $dentist['FirstName'].' '.$dentist['LastName'];
-                
-                //Display data in table row
-                echo "<tr style='border: 1px solid black;'><td>$appoint_date</td><td>$dentist_name</td><td>$treatment</td><td>$cost</td><td>$due_date</td>";
-                if ($paid==0) {
-                    echo "<td><form action='payBill.php' method='get'><input type='hidden' id='billID' name='billID' value='$billID'><button type='submit' class='btn btn-primary'>Pay</button></form></td></tr>";
-                } else if ($paid==1){
-                    echo "<td>Paid</td></tr>";
-                }
-                
+              //Get dentist name
+              $statement3 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
+              $statement3->bindParam (1, $dentistID);
+              $statement3->execute();
+              $dentist=$statement3->fetch();
+              $dentist_name = $dentist['FirstName'].' '.$dentist['LastName']; //set full name as one string variable
+              
+              //Display data in table row
+              echo "<tr style='border: 1px solid black;'><td>$appoint_date</td><td>$dentist_name</td><td>$treatment</td><td>$cost</td><td>$due_date</td>";
+              //if unpaid, display form button to payment screen. Else display as already paid
+              if ($paid==0) {
+                echo "<td><form action='payBill.php' method='get'><input type='hidden' id='billID' name='billID' value='$billID'><button type='submit' class='btn btn-primary'>Pay</button></form></td></tr>";
+              } else if ($paid==1){
+                echo "<td>Paid</td></tr>";
+              }   
             }
-        ?>
+          ?>
         </table>
         <br /><br />
         <div class="mw-70 center mt5">

@@ -25,6 +25,7 @@
         <!-- Custom JS for this template -->
         <script type="text/javascript">
             window.onload=function(){
+              //set page buttons to redirect to correct webpage on click - via EventListener
               var btn = document.getElementById('cancel');
               btn.addEventListener('click', function() {
                 document.location.href = 'login.php';

@@ -4,9 +4,11 @@
 	$em = $_POST["email"];
 	$pw = $_POST["password"];
 
+	//set salt string then encrpt inputted password with salt using MD5 hashing. Password can then be read to match encrpted password in database
 	$salt = "3c7_pKr?";
 	$encrypted_password = md5($pw . $salt);
 	
+	//Connect to database via PDO
 	$conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 	
 	//Connect to database

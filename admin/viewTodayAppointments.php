@@ -19,6 +19,7 @@
     <!-- Javascript  -->
     <script type="text/javascript">
     window.onload=function(){
+        //set page buttons to redirect to correct webpage on click - via EventListener
         var btn = document.getElementById('home');
         btn.addEventListener('click', function() {
         document.location.href = 'adminIndex.php';
@@ -45,6 +46,7 @@
         <!-- Content-->
         <div style="margin: auto; width: 80%;">
             <div style="margin-top: 70px;">
+                <!-- Today's Appointments Table -->
                 <table class="table table-bordered">
                 <tr>
                     <th style="width: 100px">Start Time</th>
@@ -77,7 +79,7 @@
                     $statement2->bindParam (1, $patientID);
                     $statement2->execute();
                     $patientRow=$statement2->fetch();
-                    $patient_name = $patientRow['FirstName'].' '.$patientRow['LastName'];
+                    $patient_name = $patientRow['FirstName'].' '.$patientRow['LastName']; //set full name as one string variable
 
                     //Display data in table row
                     echo "<tr style='border: 1px solid black;'><td>$stime</td><td>$etime</td><td>$patient_name</td><td>$reason</td></tr>";

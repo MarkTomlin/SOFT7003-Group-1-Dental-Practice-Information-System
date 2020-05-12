@@ -21,6 +21,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+        //set page buttons to redirect to correct webpage on click - via EventListener
         var btn = document.getElementById('home');
         btn.addEventListener('click', function() {
             document.location.href = 'managePatientBills.php';
@@ -47,14 +48,16 @@
 
     <!-- Content-->
     <?php
+        //Connect to database via PDO
         $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
         
-        //Get bill data
+        //Get bill data with ID passed via GET method
         $statement = $conn->prepare("SELECT * FROM Payment WHERE ID=?");
         $statement->bindParam (1, $_GET['billID']);
         $statement->execute();
         $bill=$statement->fetch();
 
+        //set found variables
         $billID = $bill['ID'];
         $date = $bill['Date'];
         $treatment = $bill['Treatment'];
@@ -66,9 +69,12 @@
 
     <div class="container" style="margin: auto; width: 80%; border-radius: 25px; box-shadow: 0 0 3px gray;">
         <?php 
+            //show bill details
             echo "<br /><p>ID: $billID<br />Patient: $patient_name<br />Treatment: $treatment<br />Cost: $cost</p>"; 
         ?>
         <br />
+
+        <!-- Let admins mark payment if done physically -->
         <h4 class="nt3 tc">Confirm Physical Payment</h4>
         <p>
             Has the patient paid physically in house or over the phone?

@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
         document.location.href = 'adminIndex.php';
@@ -57,13 +58,14 @@
               <th style="width: 100px">Action</th>
             </tr>
         <?php
-
+            //Connect to database via PDO
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
         
             //Select all appointments in DB
             $statement = $conn->prepare("SELECT * FROM Appointment");
             $statement->execute();
         
+            //loop through each appointment found
             while($row=$statement->fetch()){
               //Get dentist name
               $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
@@ -71,6 +73,7 @@
               $statement2->execute();
               $row2=$statement2->fetch();
 
+              //set varibles found
               $ID = $row['ID'];
               $patient = $row['PatientID']; 
               $date = $row['Date'];
@@ -81,6 +84,7 @@
               $dent_name = $dent_fn." ".$dent_ln;
               $conf = $row['Confirmation'];
 
+              //check confirmation status and set to correponding string and text colour
               if ($conf === '0'){
                 $conf = "Pending";
                 $col = '#ff9933';
@@ -91,7 +95,7 @@
                 $conf = "Rejected";
                 $col = 'red';
               }
-              //Display data in table row
+              //Display data in table row + edit button as a post form
               echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent_name</td><td  style='color: $col'>$conf</td>";
               echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>Edit</button></form></td></tr>";
             }

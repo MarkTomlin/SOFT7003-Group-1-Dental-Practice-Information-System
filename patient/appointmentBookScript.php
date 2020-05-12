@@ -1,6 +1,7 @@
 <?php
     session_start();
     
+    //get user ID via web session
     $user_id = $_SESSION["user_id"] ;
 
     //Get form variables
@@ -9,6 +10,7 @@
 	$dent = $_POST["dent"];
     $reas = $_POST["reason"];
 
+    //format time value to string variable
     $time_str = strval($time);
     
     //reformat string to have seconds and milliseconds for DB format
@@ -17,9 +19,9 @@
     $etime = $etime_str . ":00:00";
     $emer = 0;
     $conf = 0;
-	
-    $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
     
+    //Connect to Database via PDO
+    $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 
     //Validation - Check if date + time is already booked for dentist 
     $valid_statement = $conn->prepare("SELECT ID FROM Appointment WHERE Date=? AND StartTime=? AND DentistID=?");
@@ -29,6 +31,7 @@
     $valid_statement->execute();
     $already_booked = $valid_statement->fetch();
 
+    //check if DB response found a conflicting appointment
     if ($already_booked == true){
         //redirect to failure page
         header ('Location: appointmentFailure.php');
@@ -36,7 +39,7 @@
         //INSERT SQL statement - add new appointment as unconfirmed
         $statement = $conn->prepare("INSERT INTO Appointment (PatientID, DentistID, Date, StartTime, Endtime, Reason, Emergency, Confirmation) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        //bindParam stops SQL injection
+        //bindParam stops SQL injection exploit
         $statement->bindParam(1, $user_id);
         $statement->bindParam(2, $dent);
         $statement->bindParam(3, $date);

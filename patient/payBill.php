@@ -21,6 +21,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+        //set page buttons to redirect to correct webpage on click - via EventListener
         var cancel_btn = document.getElementById('cancel');
         cancel_btn.addEventListener('click', function() {
             document.location.href = 'viewBills.php';
@@ -47,14 +48,16 @@
 
     <!-- Content-->
     <?php
+        //Connect to Database via PDO 
         $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
         
-        //Get bill data
+        //Get bill data with ID passed via GET method
         $statement = $conn->prepare("SELECT * FROM Payment WHERE ID=?");
         $statement->bindParam (1, $_GET['billID']);
         $statement->execute();
         $bill=$statement->fetch();
 
+        //set data as new variables
         $billID = $bill['ID'];
         $date = $bill['DueDate'];
         $treatment = $bill['Treatment'];
@@ -62,6 +65,7 @@
         $appointID = $_GET['appointID'];
     ?>
 
+    <!-- Payment gateway placeholder -->
     <div class="container" style="margin: auto; width: 80%; border-radius: 25px; box-shadow: 0 0 3px gray;">
         <h4> Payment Gateway Placeholder </h4>
         <form method="POST" id="PayBillForm" action="payBillScript.php">
@@ -85,9 +89,10 @@
                 </div>
             </div>
             <?php echo "<input type='hidden' id='billID' name='billID' value='$billID'>"; ?> <!-- send bill ID -->
+            <!-- Form buttons -->
             <div class="d-flex justify-content-between" style="padding-top: 7%;">
-            <button class="btn btn-primary" type="button" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
-            <button class="btn btn-primary" type="submit" name="action" style="width: 200px; height: 48px; padding-left: 20px;">Confirm Payment</button>
+                <button class="btn btn-primary" type="button" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
+                <button class="btn btn-primary" type="submit" name="action" style="width: 200px; height: 48px; padding-left: 20px;">Confirm Payment</button>
             </div>
             <br><br>
         </form>

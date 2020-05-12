@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var home_btn = document.getElementById('home');
       var add_btn = document.getElementById('add');
       home_btn.addEventListener('click', function() {

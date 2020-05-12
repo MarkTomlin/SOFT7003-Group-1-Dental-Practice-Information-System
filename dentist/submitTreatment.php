@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
         document.location.href = 'dentistIndex.php';
@@ -47,6 +48,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
+        <!-- Appointments Table for treatment -->
         <table class="table table-bordered">
             <tr>
               <th style="width: 100px">Date</th> 
@@ -55,13 +57,16 @@
               <th style="width: 100px">Submit Treatment</th>
             </tr>
         <?php
+            //Connect to Database via PDO
             $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
-        
-            //Stops SQL injection 
+    
+            //Get all the appointments belonging to the dentist
             $statement = $conn->prepare("SELECT * FROM Appointment WHERE DentistID=?");
+            //bindParam stops SQL injection exploit 
             $statement->bindParam (1, $_SESSION["user_id"]);
             $statement->execute();
-        
+
+            //loop through each appointment found
             while($row=$statement->fetch()){
               //Get patient name
               $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
@@ -87,7 +92,7 @@
               $statement3->execute();
               $row3=$statement3->fetch();
               
-              //if no payment bill already submitted, display button for new submission 
+              //if no payment bill already submitted, display button for treatment submission. Else mark as alreadly submitted 
               if ($row3==false){
                 echo "<td><form action='treatmentForm.php' method='get'><input type='hidden' id='appointID' name='appointID' value='$appointID'><input type='hidden' id='patient_name' name='patient_name' value='$patient_name'><button type='submit' class='btn btn-primary'>Submit</button></form></td></tr>";
               } else {

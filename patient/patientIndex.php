@@ -22,6 +22,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var book_app_btn = document.getElementById('book_app');
       var view_app_btn = document.getElementById('view_app');
       var view_bills_btn = document.getElementById('view_bills');

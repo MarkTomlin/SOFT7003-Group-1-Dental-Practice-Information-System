@@ -19,6 +19,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var btn = document.getElementById('home');
       btn.addEventListener('click', function() {
         document.location.href = 'adminIndex.php';
@@ -46,6 +47,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
       <div style="margin-top: 70px;">
+        <!-- Patients Table -->
         <table class="table table-bordered">
             <tr>
               <th style="width: 100px">First Name</th>
@@ -61,7 +63,9 @@
             $statement = $conn->prepare("SELECT * FROM User WHERE Type='patient'");
             $statement->execute();
         
+            //loop through each patient user found
             while($row=$statement->fetch()){
+              //set found variables
               $fname = $row['FirstName']; 
               $lname = $row['LastName']; 
               $email = $row['Email'];

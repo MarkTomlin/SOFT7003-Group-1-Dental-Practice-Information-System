@@ -21,6 +21,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var btn = document.getElementById('cancel');
       btn.addEventListener('click', function() {
         document.location.href = 'patientIndex.php';
@@ -47,6 +48,7 @@
 
     <!-- Content-->
     <div class="container" style="margin: auto; width: 80%; border-radius: 25px; box-shadow: 0 0 3px gray;">
+      <!-- appointment request form -->
       <form method="POST" action="appointmentBookScript.php">
         <br />
         <h5>Please enter appointment details</h5><br /><br />
@@ -77,21 +79,26 @@
           <div class="col-sm-8">
             <select type="dent" id="dent" class="form-control" name="dent" placeholder="Dentist" required>
               <option value="" disabled selected>Please select your preferred Dentist</option>
-              <?php 
+              <?php
+                //Connect to Database via PDO 
                 $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 
                 $user_type = "dentist";
                 
-                //Select user data from all dentist users
+                //Select user data from all dentist users - So that every dentist is listed in the selection drop down
                 $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM User WHERE Type=?");
                 //bindParam stops SQL injection exploit
                 $statement->bindParam (1, $user_type);
                 $statement->execute();
 
+                //loop through all dentists found
                 while($row=$statement->fetch()){
+                  //set data to variables
                   $dentID = $row['ID'];
                   $dentFN = $row['FirstName'];
                   $dentLN = $row['LastName'];
+
+                  //display the dentist in the selection drop down
                   echo  "<option value=$dentID>$dentFN $dentLN</option>";
                 }
               ?>  
@@ -104,6 +111,7 @@
             <input type="text" id="reason" class="form-control" name="reason" placeholder="Reason for Appointment" required> 
           <div><br /> 
         </div>
+        <!-- form buttons -->
         <div class="d-flex justify-content-between" style="padding-top: 7%;">
           <button class="btn btn-primary" type="button" id="cancel" style="width: 200px; height: 48px; padding-right: 20px;">Cancel</button>
           <button class="btn btn-primary" type="submit" name="action" style="width: 200px; height: 48px; padding-left: 20px;">Submit</button>

@@ -19,6 +19,7 @@
     <!-- Javascript  -->
     <script type="text/javascript">
     window.onload=function(){
+        //set page buttons to redirect to correct webpage on click - via EventListener
         var btn = document.getElementById('home');
         btn.addEventListener('click', function() {
         document.location.href = 'dentistIndex.php';
@@ -45,51 +46,52 @@
         <!-- Content-->
         <div style="margin: auto; width: 80%;">
             <div style="margin-top: 70px;">
+                <!-- Today's Appointments Table -->
                 <table class="table table-bordered">
-                <tr>
-                    <th style="width: 100px">Start Time</th>
-                    <th style="width: 100px">End Time</th>
-                    <th style="width: 100px">Patient</th>
-                    <th style="width: 100px">Reason</th>
-                </tr>
-                <?php
-                //get user id from web session
-                $user_id = $_SESSION["user_id"] ;
-                //get today's date
-                $today = date('Y-m-d');
+                    <tr>
+                        <th style="width: 100px">Start Time</th>
+                        <th style="width: 100px">End Time</th>
+                        <th style="width: 100px">Patient</th>
+                        <th style="width: 100px">Reason</th>
+                    </tr>
+                    <?php
+                    //get user id from web session
+                    $user_id = $_SESSION["user_id"] ;
+                    //get today's date
+                    $today = date('Y-m-d');
 
-                //Connect to Database
-                $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
-            
-                //Select all of todays appointments belonging to the dentist user 
-                $statement = $conn->prepare("SELECT * FROM Appointment WHERE DentistID=? AND Date=? ORDER BY StartTime ASC");
-                //bindParam stops SQL injection exploit
-                $statement->bindParam (1, $user_id);
-                $statement->bindParam (2, $today);
-                $statement->execute();
-            
-                //loop through each appointment found
-                while($row=$statement->fetch()){
-                    $stime = $row['StartTime'];
-                    $etime = $row['EndTime'];
-                    $patientID = $row['PatientID'];
-                    $reason = $row['Reason'];
+                    //Connect to Database
+                    $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+                
+                    //Select all of todays appointments belonging to the dentist user 
+                    $statement = $conn->prepare("SELECT * FROM Appointment WHERE DentistID=? AND Date=? ORDER BY StartTime ASC");
+                    //bindParam stops SQL injection exploit
+                    $statement->bindParam (1, $user_id);
+                    $statement->bindParam (2, $today);
+                    $statement->execute();
+                
+                    //loop through each appointment found
+                    while($row=$statement->fetch()){
+                        $stime = $row['StartTime'];
+                        $etime = $row['EndTime'];
+                        $patientID = $row['PatientID'];
+                        $reason = $row['Reason'];
 
-                    //get patient name from User db table
-                    $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
-                    $statement2->bindParam (1, $patientID);
-                    $statement2->execute();
-                    $patientRow=$statement2->fetch();
-                    $patient_name = $patientRow['FirstName'].' '.$patientRow['LastName'];
+                        //get patient name from User db table
+                        $statement2 = $conn->prepare("SELECT FirstName, LastName FROM User WHERE ID=?");
+                        $statement2->bindParam (1, $patientID);
+                        $statement2->execute();
+                        $patientRow=$statement2->fetch();
+                        $patient_name = $patientRow['FirstName'].' '.$patientRow['LastName']; ////set full name as one string variable
 
-                    //Display data in table row
-                    echo "<tr style='border: 1px solid black;'><td>$stime</td><td>$etime</td><td>$patient_name</td><td>$reason</td></tr>";
-                }  
-                //if no appointments today display message 
-                if ($statement->rowCount() == 0){
-                    echo "<h3>No appointments scheduled for today!</h3>";
-                }
-                ?>
+                        //Display data in table row
+                        echo "<tr style='border: 1px solid black;'><td>$stime</td><td>$etime</td><td>$patient_name</td><td>$reason</td></tr>";
+                    }  
+                    //if no appointments today display message 
+                    if ($statement->rowCount() == 0){
+                        echo "<h3>No appointments scheduled for today!</h3>";
+                    }
+                    ?>
                 </table>
                 <div class="d-flex justify-content-center" style="padding-top: 7%; margin: auto; width: 40%;"> 
                 <button class="btn btn-primary" id="home" style="width: 200px; height: 48px; padding-right: 5px;">Home</button>

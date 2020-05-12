@@ -19,6 +19,7 @@
     <!-- Javascript  -->
     <script type="text/javascript">
     window.onload=function(){
+        //set page buttons to redirect to correct webpage on click - via EventListener
         var btn = document.getElementById('home');
         btn.addEventListener('click', function() {
         document.location.href = 'dentistIndex.php';
@@ -47,6 +48,7 @@
     <!-- Content-->
     <div style="margin: auto; width: 80%;">
         <div style="margin-top: 70px;">
+        <!-- Patients Table for viewing records-->
         <table class="table table-bordered">
             <tr>
                 <th style="width: 100px">First Name</th>
@@ -55,27 +57,28 @@
                 <th style="width: 100px">Phone Number</th>
                 <th style="width: 100px">Records</th>
             </tr>
-        <?php
-            //Connect to Database
-            $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
+            <?php
+                //Connect to Database via PDO
+                $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
 
-            //Select all patient users in database User table 
-            $statement = $conn->prepare("SELECT * FROM User WHERE Type='patient'");
-            $statement->execute();
-        
-            while($row=$statement->fetch()){
-                $fname = $row['FirstName'];
-                $fname = $row['FirstName']; 
-                $lname = $row['LastName']; 
-                $email = $row['Email'];
-                $pnum = $row['PhoneNumber'];
+                //Select all patient users in database User table 
+                $statement = $conn->prepare("SELECT * FROM User WHERE Type='patient'");
+                $statement->execute();
 
-                //Display data in table row
-                echo "<tr style='border: 1px solid black;'><td>$fname</td><td>$lname</td><td>$email</td><td>$pnum</td>";
-                echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>View</button></form></td></tr>";
-            }
-            
-        ?>
+                //loop through each patient user found
+                while($row=$statement->fetch()){
+                    //set patient variables
+                    $fname = $row['FirstName'];
+                    $fname = $row['FirstName']; 
+                    $lname = $row['LastName']; 
+                    $email = $row['Email'];
+                    $pnum = $row['PhoneNumber'];
+
+                    //Display data in table row - Note: view record is disabled, as not implemented yet
+                    echo "<tr style='border: 1px solid black;'><td>$fname</td><td>$lname</td><td>$email</td><td>$pnum</td>";
+                    echo "<td><form action='' method='post'><input type='hidden' id='ID' name='ID' value='$ID'><button type='submit' class='btn btn-primary'>View</button></form></td></tr>";
+                }
+            ?>
         </table>
         <br /><br />
         <div class="mw-70 center mt5">

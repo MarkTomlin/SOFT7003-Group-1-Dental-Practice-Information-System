@@ -88,8 +88,8 @@
                 $conf = "Confirmed";
                 $col = 'green';
               } elseif ($conf === '2') {
-              $conf = "Rejected";
-              $col = 'red';
+                $conf = "Rejected";
+                $col = 'red';
               }
               //Display data in table row
               echo "<tr style='border: 1px solid black;'><td>$patient</td><td>$date</td><td>$stime</td><td>$etime</td><td>$dent_name</td><td  style='color: $col'>$conf</td>";

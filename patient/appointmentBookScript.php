@@ -11,6 +11,7 @@
 
     $time_str = strval($time);
     
+    //reformat string to have seconds and milliseconds for DB format
     $stime = $time_str . ":00:00";
     $etime_str = strval($time + 1);
     $etime = $etime_str . ":00:00";

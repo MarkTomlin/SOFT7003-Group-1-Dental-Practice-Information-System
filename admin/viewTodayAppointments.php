@@ -21,7 +21,7 @@
     window.onload=function(){
         var btn = document.getElementById('home');
         btn.addEventListener('click', function() {
-        document.location.href = 'dentistIndex.php';
+        document.location.href = 'adminIndex.php';
         });
     }
             
@@ -38,7 +38,7 @@
         <?php include("../navbar.php"); ?>
 
         <!-- Headings -->
-        <h1 class="nt3 tc">Dentist Management System</h1>
+        <h1 class="nt3 tc">Administrator Management System</h1>
         <br /><br />
         <h2 class="nt3 tc">Today's Appointments</h2>
 
@@ -53,19 +53,16 @@
                     <th style="width: 100px">Reason</th>
                 </tr>
                 <?php
-                //get user id from web session
-                $user_id = $_SESSION["user_id"] ;
                 //get today's date
                 $today = date('Y-m-d');
 
                 //Connect to Database
                 $conn = new PDO("mysql:host=fdb24.awardspace.net;dbname=3332660_dental;","3332660_dental","dental1234");
             
-                //Select all of todays appointments belonging to the dentist user 
-                $statement = $conn->prepare("SELECT * FROM Appointment WHERE DentistID=? AND Date=? ORDER BY StartTime ASC");
+                //Select all of todays appointments
+                $statement = $conn->prepare("SELECT * FROM Appointment WHERE Date=? ORDER BY StartTime ASC");
                 //bindParam stops SQL injection exploit
-                $statement->bindParam (1, $user_id);
-                $statement->bindParam (2, $today);
+                $statement->bindParam (1, $today);
                 $statement->execute();
             
                 //loop through each appointment found
@@ -84,7 +81,7 @@
 
                     //Display data in table row
                     echo "<tr style='border: 1px solid black;'><td>$stime</td><td>$etime</td><td>$patient_name</td><td>$reason</td></tr>";
-                }  
+                } 
                 //if no appointments today display message 
                 if ($statement->rowCount() == 0){
                     echo "<h3>No appointments scheduled for today!</h3>";

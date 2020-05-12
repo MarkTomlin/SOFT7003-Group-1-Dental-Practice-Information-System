@@ -27,6 +27,7 @@
       var view_pat_btn = document.getElementById('view_pat');
       var man_bill_btn = document.getElementById('man_bill');
       var reg_acc_btn = document.getElementById('reg_acc');
+      var view_tod_app_btn = document.getElementById('view_tod_app');
       conf_app_btn.addEventListener('click', function() {
         document.location.href = 'appointmentConfirm.php';
       });
@@ -39,8 +40,8 @@
       man_bill_btn.addEventListener('click', function() {
         document.location.href = 'managePatientBills.php';
       });
-      reg_acc_btn.addEventListener('click', function() {
-        document.location.href = 'createUserForm.php';
+      view_tod_app_btn.addEventListener('click', function() {
+        document.location.href = 'viewTodayAppointments.php';
       });
     }
             
@@ -66,6 +67,9 @@
     <div class="mw-70 center mt5">
       <div class="row mb3" style="justify-content: center;">
         <button id='view_cal'  class="btn btn-primary" style="width: 380px">View Appointment Calender</button>
+      </div><br />
+      <div class="row mb3" style="justify-content: center;">
+        <button id='view_tod_app'  class="btn btn-primary" style="width: 380px">View Today's Appointments</button>
       </div><br />
       <div class="row mb3" style="justify-content: center;">
         <button id='conf_app' class="btn btn-primary" style="width: 380px">Confirm Appointments</button>

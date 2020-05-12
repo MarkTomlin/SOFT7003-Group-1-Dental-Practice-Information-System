@@ -16,9 +16,10 @@
 	$statement->bindParam (2, $encrypted_password);
 	$statement->execute();
 	
+	//if login not found
 	if ($statement->rowCount() < 1) {
-		echo "<p>ERROR: Invalid Login!";
-		echo " <a href='login.php'>Back</a></p>";
+		//Redirects to login failure page
+		header ('Location: loginFailure.php');
 	}
 
 	while($row_statement=$statement->fetch()){

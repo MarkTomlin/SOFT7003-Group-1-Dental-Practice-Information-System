@@ -22,6 +22,7 @@
   <!-- Javascript  -->
   <script type="text/javascript">
     window.onload=function(){
+      //set page buttons to redirect to correct webpage on click - via EventListener
       var conf_app_btn = document.getElementById('conf_app');
       var edit_app_btn = document.getElementById('edit_app');
       var view_pat_btn = document.getElementById('view_pat');
@@ -42,6 +43,9 @@
       });
       view_tod_app_btn.addEventListener('click', function() {
         document.location.href = 'viewTodayAppointments.php';
+      });
+      reg_acc_btn.addEventListener('click', function() {
+        document.location.href = 'createUserForm.php';
       });
     }
             
